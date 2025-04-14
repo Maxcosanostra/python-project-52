@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Home - Hexlet Code{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">{% trans "Welcome to Hexlet Code" %}</h1>
+    <p class="lead">{% trans "This is a server-rendered Bootstrap interface!" %}</p>
+    <hr class="my-4">
+    <p>{% trans "Use the menu above to navigate." %}</p>
+</div>
+{% endblock %}
