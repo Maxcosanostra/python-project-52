@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Statuses" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Statuses" %}</h1>
+<a href="{% url 'status_create' %}" class="btn btn-primary mb-3">{% trans "Create New Status" %}</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{% trans "Status Name" %}</th>
+            <th>{% trans "Actions" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for status in statuses %}
+        <tr>
+            <td>{{ status.name }}</td>
+            <td>
+                <a href="{% url 'status_update' status.pk %}" class="btn btn-sm btn-secondary">{% trans "Edit" %}</a>
+                <a href="{% url 'status_delete' status.pk %}" class="btn btn-sm btn-danger">{% trans "Delete" %}</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">{% trans "No statuses found." %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
