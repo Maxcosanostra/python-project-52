@@ -25,7 +25,7 @@ class UserCreateView(CreateView):
 
 class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = User
-    form_class = UserChangeForm
+    fields = ['username']
     template_name = "users/user_form.html"
     success_url = reverse_lazy("user_list")
 
