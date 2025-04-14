@@ -30,6 +30,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['webserver', '127.0.0.1', 'localhost', 'python-project-52-q6c1.onrender.com']
 
+LOGIN_REDIRECT_URL = "/"
 
 
 # Application definition
