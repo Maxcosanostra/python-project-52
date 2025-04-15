@@ -8,6 +8,12 @@ class Status(models.Model):
     def __str__(self):
         return self.name
 
+class Label(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name
+
 class Task(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
@@ -28,6 +34,7 @@ class Task(models.Model):
         on_delete=models.PROTECT,
         related_name="tasks_created"
     )
+    labels = models.ManyToManyField(Label, blank=True, related_name="tasks")
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
