@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Labels" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Labels" %}</h1>
+<a href="{% url 'label_create' %}" class="btn btn-primary mb-3">{% trans "Create New Label" %}</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{% trans "Label Name" %}</th>
+            <th>{% trans "Actions" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for label in labels %}
+        <tr>
+            <td>{{ label.name }}</td>
+            <td>
+                <a href="{% url 'label_update' label.pk %}" class="btn btn-sm btn-secondary">{% trans "Edit" %}</a>
+                <a href="{% url 'label_delete' label.pk %}" class="btn btn-sm btn-danger">{% trans "Delete" %}</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="2">{% trans "No labels found." %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
