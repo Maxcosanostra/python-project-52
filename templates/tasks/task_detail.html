@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{{ task.name }}{% endblock %}
+
+{% block content %}
+<h1>{{ task.name }}</h1>
+<p><strong>{% trans "Description:" %}</strong> {{ task.description }}</p>
+<p><strong>{% trans "Status:" %}</strong> {{ task.status.name }}</p>
+<p><strong>{% trans "Author:" %}</strong> {{ task.author.username }}</p>
+{% if task.assigned_to %}
+<p><strong>{% trans "Assigned to:" %}</strong> {{ task.assigned_to.username }}</p>
+{% endif %}
+<a href="{% url 'task_update' task.pk %}" class="btn btn-secondary">{% trans "Edit" %}</a>
+{% if request.user.pk == task.author.pk %}
+<a href="{% url 'task_delete' task.pk %}" class="btn btn-danger">{% trans "Delete" %}</a>
+{% endif %}
+<a href="{% url 'task_list' %}" class="btn btn-link">{% trans "Back to Task List" %}</a>
+{% endblock %}
