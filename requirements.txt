@@ -3,4 +3,4 @@ gunicorn
 dj-database-url
 python-dotenv
 django-bootstrap5
-
+django-filter
