@@ -1,11 +1,14 @@
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
+from django_filters.views import FilterView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from .models import Task
+from .filters import TaskFilter
 
-class TaskListView(LoginRequiredMixin, ListView):
+class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
+    filterset_class = TaskFilter
     template_name = "tasks/task_list.html"
     context_object_name = "tasks"
 
