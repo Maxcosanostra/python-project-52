@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block title %}{% trans "Filter Tasks" %}{% endblock %}
+
+{% block content %}
+<h1>{% trans "Filter Tasks" %}</h1>
+<form method="get">
+    {% bootstrap_form filter.form %}
+    <button type="submit" class="btn btn-primary">{% trans "Filter" %}</button>
+</form>
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>{% trans "Name" %}</th>
+            <th>{% trans "Status" %}</th>
+            <th>{% trans "Author" %}</th>
+            <th>{% trans "Actions" %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for task in tasks %}
+        <tr>
+            <td><a href="{% url 'task_detail' task.pk %}">{{ task.name }}</a></td>
+            <td>{{ task.status.name }}</td>
+            <td>{{ task.author.username }}</td>
+            <td>
+                <a href="{% url 'task_update' task.pk %}" class="btn btn-sm btn-secondary">{% trans "Edit" %}</a>
+                {% if request.user.pk == task.author.pk %}
+                    <a href="{% url 'task_delete' task.pk %}" class="btn btn-sm btn-danger">{% trans "Delete" %}</a>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">{% trans "No tasks found." %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
