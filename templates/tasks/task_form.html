@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% load i18n %}
+
+{% block title %}
+    {% if object %}{% trans "Edit Task" %}{% else %}{% trans "Create Task" %}{% endif %}
+{% endblock %}
+
+{% block content %}
+<h1>
+    {% if object %}{% trans "Edit Task" %}{% else %}{% trans "Create Task" %}{% endif %}
+</h1>
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
+</form>
+{% endblock %}
