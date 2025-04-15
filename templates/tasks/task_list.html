@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load django_bootstrap5 %}
 {% load i18n %}
 
 {% block title %}{% trans "Tasks" %}{% endblock %}
@@ -6,6 +7,13 @@
 {% block content %}
 <h1>{% trans "Tasks" %}</h1>
 <a href="{% url 'task_create' %}" class="btn btn-primary mb-3">{% trans "Create New Task" %}</a>
+
+<!-- Фильтрация -->
+<form method="get" class="mb-4">
+    {% bootstrap_form filter.form %}
+    <button type="submit" class="btn btn-secondary">{% trans "Filter" %}</button>
+</form>
+
 <table class="table table-striped">
     <thead>
         <tr>
