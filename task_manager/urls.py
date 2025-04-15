@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('task_manager.urls_users')),
     path('', include('task_manager.urls_statuses')),
     path('', include('task_manager.urls_tasks')),
+    path('', include('task_manager.urls_labels')),
 ]
