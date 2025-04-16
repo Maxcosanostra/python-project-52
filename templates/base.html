@@ -1,7 +1,7 @@
 {% load django_bootstrap5 %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,30 +13,30 @@
     <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'index' %}">{% trans "Hexlet Code" %}</a>
+            <a class="navbar-brand" href="{% url 'index' %}">{% trans 'Hexlet Code' %}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="{% trans 'Переключить навигацию' %}">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">{% trans "Login" %}</a>
+                        <a class="nav-link" href="{% url 'login' %}">{% trans 'Вход' %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_create' %}">{% trans "Registration" %}</a>
+                        <a class="nav-link" href="{% url 'user_create' %}">{% trans 'Регистрация' %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_list' %}">{% trans "Users" %}</a>
+                        <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'status_list' %}">{% trans "Statuses" %}</a>
+                        <a class="nav-link" href="{% url 'status_list' %}">{% trans 'Статусы' %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'task_list' %}">{% trans "Tasks" %}</a>
+                        <a class="nav-link" href="{% url 'task_list' %}">{% trans 'Задачи' %}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'label_list' %}">{% trans "Labels" %}</a>
+                        <a class="nav-link" href="{% url 'label_list' %}">{% trans 'Метки' %}</a>
                     </li>
                 </ul>
             </div>
@@ -49,7 +49,7 @@
         {% for message in messages %}
           <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
             {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{% trans 'Закрыть' %}"></button>
           </div>
         {% endfor %}
       </div>
