@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 04:14+0500\n"
+"POT-Creation-Date: 2025-04-17 04:39+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -18,7 +18,8 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14) ? 2 : 3);\n"
 
-#: task_manager/models.py:9 templates/statuses/status_list.html:12
+#: task_manager/models.py:8 task_manager/models.py:18
+#: templates/labels/label_list.html:12 templates/statuses/status_list.html:12
 #: templates/tasks/task_filter.html:17 templates/tasks/task_list.html:20
 msgid "Name"
 msgstr "Название"
@@ -125,10 +126,6 @@ msgstr "Метки"
 #: templates/labels/label_list.html:8
 msgid "Create New Label"
 msgstr "Создать новую метку"
-
-#: templates/labels/label_list.html:12
-msgid "Label Name"
-msgstr "Название метки"
 
 #: templates/labels/label_list.html:13 templates/statuses/status_list.html:13
 #: templates/tasks/task_filter.html:20 templates/tasks/task_list.html:23
@@ -261,6 +258,9 @@ msgstr "Имя пользователя"
 #: templates/users/user_list.html:29
 msgid "No users found."
 msgstr "Пользователи не найдены."
+
+#~ msgid "Label Name"
+#~ msgstr "Название метки"
 
 #~ msgid "Status Name"
 #~ msgstr "Название статуса"
