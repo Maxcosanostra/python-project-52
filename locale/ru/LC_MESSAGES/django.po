@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-16 16:33+0500\n"
+"POT-Creation-Date: 2025-04-17 04:14+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -17,6 +17,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14) ? 2 : 3);\n"
+
+#: task_manager/models.py:9 templates/statuses/status_list.html:12
+#: templates/tasks/task_filter.html:17 templates/tasks/task_list.html:20
+msgid "Name"
+msgstr "Название"
 
 #: templates/base.html:16
 msgid "Hexlet Code"
@@ -161,10 +166,6 @@ msgstr "Статусы"
 msgid "Create New Status"
 msgstr "Создать новый статус"
 
-#: templates/statuses/status_list.html:12
-msgid "Status Name"
-msgstr "Название статуса"
-
 #: templates/statuses/status_list.html:27
 msgid "No statuses found."
 msgstr "Статусы не найдены."
@@ -200,10 +201,6 @@ msgstr "Фильтр задач"
 #: templates/tasks/task_filter.html:11 templates/tasks/task_list.html:14
 msgid "Filter"
 msgstr "Фильтр"
-
-#: templates/tasks/task_filter.html:17 templates/tasks/task_list.html:20
-msgid "Name"
-msgstr "Название"
 
 #: templates/tasks/task_filter.html:18 templates/tasks/task_list.html:21
 msgid "Status"
@@ -264,6 +261,9 @@ msgstr "Имя пользователя"
 #: templates/users/user_list.html:29
 msgid "No users found."
 msgstr "Пользователи не найдены."
+
+#~ msgid "Status Name"
+#~ msgstr "Название статуса"
 
 #~ msgid "Registration"
 #~ msgstr "Регистрация"
