@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-17 04:50+0500\n"
+"POT-Creation-Date: 2025-04-18 02:01+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -20,27 +20,25 @@ msgstr ""
 
 #: task_manager/models.py:8 task_manager/models.py:19 task_manager/models.py:30
 #: templates/labels/label_list.html:12 templates/statuses/status_list.html:12
-#: templates/tasks/task_filter.html:17 templates/tasks/task_list.html:20
+#: templates/tasks/task_filter.html:17 templates/tasks/task_list.html:21
 msgid "Name"
 msgstr "Название"
 
 #: task_manager/models.py:34
-#| msgid "Description:"
 msgid "Description"
 msgstr "Описание:"
 
-#: task_manager/models.py:39
-#| msgid "Assigned to:"
+#: task_manager/models.py:39 templates/tasks/task_list.html:24
 msgid "Assigned to"
 msgstr "Исполнитель:"
 
 #: task_manager/models.py:47 templates/tasks/task_filter.html:18
-#: templates/tasks/task_list.html:21
+#: templates/tasks/task_list.html:22
 msgid "Status"
 msgstr "Статус"
 
 #: task_manager/models.py:53 templates/tasks/task_filter.html:19
-#: templates/tasks/task_list.html:22
+#: templates/tasks/task_list.html:23
 msgid "Author"
 msgstr "Автор"
 
@@ -49,10 +47,29 @@ msgstr "Автор"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/models.py:64
-#| msgid "Create Status"
+#: task_manager/models.py:64 templates/tasks/task_list.html:25
 msgid "Created at"
 msgstr "Дата создания"
+
+#: task_manager/views_users.py:24
+msgid "Registration successful. Please log in."
+msgstr "Пользователь успешно зарегистрирован. Пожалуйста, залогиньтесь"
+
+#: task_manager/views_users.py:38
+msgid "Profile updated successfully."
+msgstr "Аккаунт успешно обновлен"
+
+#: task_manager/views_users.py:51
+msgid "Your account has been deleted."
+msgstr "Ваш аккаунт удален"
+
+#: task_manager/views_users.py:59
+msgid "You are logged in."
+msgstr "Вы залогинены"
+
+#: task_manager/views_users.py:67
+msgid "You have been logged out."
+msgstr "Вы разлогинены"
 
 #: templates/base.html:16
 msgid "Hexlet Code"
@@ -63,30 +80,34 @@ msgid "Переключить навигацию"
 msgstr "Переключить навигацию"
 
 #: templates/base.html:24
-msgid "Вход"
-msgstr "Вход"
-
-#: templates/base.html:27
-msgid "Регистрация"
-msgstr ""
-
-#: templates/base.html:30
 msgid "Пользователи"
 msgstr ""
 
-#: templates/base.html:33
+#: templates/base.html:28
 msgid "Статусы"
 msgstr ""
 
-#: templates/base.html:36
+#: templates/base.html:31
+msgid "Метки"
+msgstr ""
+
+#: templates/base.html:34
 msgid "Задачи"
 msgstr ""
 
 #: templates/base.html:39
-msgid "Метки"
+msgid "Выход"
 msgstr ""
 
-#: templates/base.html:52
+#: templates/base.html:44
+msgid "Вход"
+msgstr "Вход"
+
+#: templates/base.html:47
+msgid "Регистрация"
+msgstr ""
+
+#: templates/base.html:61
 msgid "Закрыть"
 msgstr "Закрыть"
 
@@ -123,7 +144,7 @@ msgstr "Вы уверены, что хотите удалить эту метк�
 #: templates/statuses/status_list.html:22
 #: templates/tasks/task_confirm_delete.html:11
 #: templates/tasks/task_detail.html:16 templates/tasks/task_filter.html:32
-#: templates/tasks/task_list.html:35
+#: templates/tasks/task_list.html:45
 #: templates/users/user_confirm_delete.html:11
 #: templates/users/user_list.html:23
 msgid "Delete"
@@ -154,14 +175,13 @@ msgid "Create New Label"
 msgstr "Создать новую метку"
 
 #: templates/labels/label_list.html:13 templates/statuses/status_list.html:13
-#: templates/tasks/task_filter.html:20 templates/tasks/task_list.html:23
-#: templates/users/user_list.html:13
+#: templates/tasks/task_filter.html:20 templates/users/user_list.html:13
 msgid "Actions"
 msgstr "Действия"
 
 #: templates/labels/label_list.html:21 templates/statuses/status_list.html:21
 #: templates/tasks/task_detail.html:14 templates/tasks/task_filter.html:30
-#: templates/tasks/task_list.html:33 templates/users/user_list.html:22
+#: templates/tasks/task_list.html:43 templates/users/user_list.html:22
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -225,7 +245,7 @@ msgstr "Фильтр задач"
 msgid "Filter"
 msgstr "Фильтр"
 
-#: templates/tasks/task_filter.html:38 templates/tasks/task_list.html:41
+#: templates/tasks/task_filter.html:38 templates/tasks/task_list.html:51
 msgid "No tasks found."
 msgstr "Задачи не найдены."
 
@@ -244,6 +264,10 @@ msgstr "Задачи"
 #: templates/tasks/task_list.html:9
 msgid "Create New Task"
 msgstr "Создать новую задачу"
+
+#: templates/tasks/task_list.html:20
+msgid "ID"
+msgstr ""
 
 #: templates/users/login.html:5 templates/users/login.html:8
 msgid "Login"
