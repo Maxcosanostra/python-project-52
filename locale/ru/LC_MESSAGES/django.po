@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-18 02:01+0500\n"
+"POT-Creation-Date: 2025-04-17 22:08+0000\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -17,6 +17,14 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14) ? 2 : 3);\n"
+
+#: task_manager/forms.py:9
+msgid "First name"
+msgstr "Имя"
+
+#: task_manager/forms.py:14
+msgid "Last name"
+msgstr "Фамилия"
 
 #: task_manager/models.py:8 task_manager/models.py:19 task_manager/models.py:30
 #: templates/labels/label_list.html:12 templates/statuses/status_list.html:12
@@ -51,23 +59,23 @@ msgstr "Метки"
 msgid "Created at"
 msgstr "Дата создания"
 
-#: task_manager/views_users.py:24
+#: task_manager/views_users.py:29
 msgid "Registration successful. Please log in."
 msgstr "Пользователь успешно зарегистрирован. Пожалуйста, залогиньтесь"
 
-#: task_manager/views_users.py:38
+#: task_manager/views_users.py:43
 msgid "Profile updated successfully."
 msgstr "Аккаунт успешно обновлен"
 
-#: task_manager/views_users.py:51
+#: task_manager/views_users.py:56
 msgid "Your account has been deleted."
 msgstr "Ваш аккаунт удален"
 
-#: task_manager/views_users.py:59
+#: task_manager/views_users.py:64
 msgid "You are logged in."
 msgstr "Вы залогинены"
 
-#: task_manager/views_users.py:67
+#: task_manager/views_users.py:72
 msgid "You have been logged out."
 msgstr "Вы разлогинены"
 
@@ -146,7 +154,7 @@ msgstr "Вы уверены, что хотите удалить эту метк�
 #: templates/tasks/task_detail.html:16 templates/tasks/task_filter.html:32
 #: templates/tasks/task_list.html:45
 #: templates/users/user_confirm_delete.html:11
-#: templates/users/user_list.html:23
+#: templates/users/user_list.html:34
 msgid "Delete"
 msgstr "Удалить"
 
@@ -175,13 +183,13 @@ msgid "Create New Label"
 msgstr "Создать новую метку"
 
 #: templates/labels/label_list.html:13 templates/statuses/status_list.html:13
-#: templates/tasks/task_filter.html:20 templates/users/user_list.html:13
+#: templates/tasks/task_filter.html:20 templates/users/user_list.html:18
 msgid "Actions"
 msgstr "Действия"
 
 #: templates/labels/label_list.html:21 templates/statuses/status_list.html:21
 #: templates/tasks/task_detail.html:14 templates/tasks/task_filter.html:30
-#: templates/tasks/task_list.html:43 templates/users/user_list.html:22
+#: templates/tasks/task_list.html:43 templates/users/user_list.html:31
 msgid "Edit"
 msgstr "Редактировать"
 
@@ -265,7 +273,7 @@ msgstr "Задачи"
 msgid "Create New Task"
 msgstr "Создать новую задачу"
 
-#: templates/tasks/task_list.html:20
+#: templates/tasks/task_list.html:20 templates/users/user_list.html:14
 msgid "ID"
 msgstr ""
 
@@ -285,7 +293,7 @@ msgstr "Вы уверены, что хотите удалить свой акк�
 msgid "User Form"
 msgstr "Форма пользователя"
 
-#: templates/users/user_list.html:7
+#: templates/users/user_list.html:3 templates/users/user_list.html:6
 msgid "Users"
 msgstr "Пользователи"
 
@@ -293,16 +301,23 @@ msgstr "Пользователи"
 msgid "Register New User"
 msgstr "Зарегистрировать нового пользователя"
 
-#: templates/users/user_list.html:12
+#: templates/users/user_list.html:15
 msgid "Username"
 msgstr "Имя пользователя"
 
-#: templates/users/user_list.html:29
+#: templates/users/user_list.html:16
+#| msgid "Label Name"
+msgid "Full Name"
+msgstr "Полное имя"
+
+#: templates/users/user_list.html:17
+#| msgid "Created at"
+msgid "Date Created"
+msgstr "Дата создания"
+
+#: templates/users/user_list.html:41
 msgid "No users found."
 msgstr "Пользователи не найдены."
-
-#~ msgid "Label Name"
-#~ msgstr "Название метки"
 
 #~ msgid "Status Name"
 #~ msgstr "Название статуса"
