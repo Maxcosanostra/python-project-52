@@ -2,10 +2,12 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import LoginView as AuthLoginView, LogoutView as AuthLogoutView
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+
+from .forms import CustomUserCreationForm
 
 
 class UserListView(ListView):
@@ -16,7 +18,7 @@ class UserListView(ListView):
 
 class UserCreateView(CreateView):
     model = User
-    form_class = UserCreationForm
+    form_class = CustomUserCreationForm
     template_name = "users/user_form.html"
     success_url = reverse_lazy("login")
 
