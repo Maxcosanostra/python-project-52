@@ -9,6 +9,12 @@ class Status(models.Model):
         max_length=100,
         unique=True
     )
+    created_at = models.DateTimeField(
+        _("Date Created"),
+        auto_now_add=True,
+        null=True,
+        blank=True,
+    )
 
     def __str__(self):
         return self.name
