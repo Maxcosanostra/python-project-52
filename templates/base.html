@@ -21,23 +21,32 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">{% trans 'Вход' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_create' %}">{% trans 'Регистрация' %}</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'status_list' %}">{% trans 'Статусы' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'task_list' %}">{% trans 'Задачи' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'label_list' %}">{% trans 'Метки' %}</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'status_list' %}">{% trans 'Статусы' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'label_list' %}">{% trans 'Метки' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'task_list' %}">{% trans 'Задачи' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <form action="{% url 'logout' %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="nav-link btn btn-link">{% trans 'Выход' %}</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">{% trans 'Вход' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_create' %}">{% trans 'Регистрация' %}</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
@@ -57,8 +66,7 @@
 
     <!-- Контент -->
     <main class="container mt-4">
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
     </main>
 </body>
 </html>
