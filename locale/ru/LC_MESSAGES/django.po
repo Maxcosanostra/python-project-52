@@ -50,10 +50,9 @@ msgid "Labels"
 msgstr "Метки"
 
 #: task_manager/models.py:64
-#, fuzzy
 #| msgid "Create Status"
 msgid "Created at"
-msgstr "Создать статус"
+msgstr "Дата создания"
 
 #: templates/base.html:16
 msgid "Hexlet Code"
