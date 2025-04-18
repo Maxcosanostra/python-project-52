@@ -66,5 +66,5 @@ class LogoutView(AuthLogoutView):
     next_page = reverse_lazy('index')
 
     def post(self, request, *args, **kwargs):
-        messages.success(request, _("You have been logged out."))
+        messages.info(request, _("You have been logged out."))
         return super().post(request, *args, **kwargs)
