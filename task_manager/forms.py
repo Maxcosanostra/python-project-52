@@ -24,3 +24,24 @@ class CustomUserCreationForm(UserCreationForm):
             "password1",
             "password2",
         )
+
+
+class CustomUserChangeForm(forms.ModelForm):
+    first_name = forms.CharField(
+        label=_("First name"),
+        max_length=30,
+        required=False,
+    )
+    last_name = forms.CharField(
+        label=_("Last name"),
+        max_length=150,
+        required=False,
+    )
+
+    class Meta:
+        model = User
+        fields = (
+            "first_name",
+            "last_name",
+            "username",
+        )
