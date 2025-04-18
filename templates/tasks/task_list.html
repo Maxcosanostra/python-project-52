@@ -9,10 +9,12 @@
 <a href="{% url 'task_create' %}" class="btn btn-primary mb-3">{% trans "Create New Task" %}</a>
 
 <!-- Фильтрация -->
-<form method="get" class="mb-4">
-    {% bootstrap_form filter.form %}
-    <button type="submit" class="btn btn-secondary">{% trans "Filter" %}</button>
-</form>
+<div class="container bg-light border p-3 mb-4">
+  <form method="get" class="mb-0">
+      {% bootstrap_form filter.form %}
+      <button type="submit" class="btn btn-primary">{% trans "Filter" %}</button>
+  </form>
+</div>
 
 <table class="table table-striped">
     <thead>
