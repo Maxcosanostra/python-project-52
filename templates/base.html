@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Hexlet Code{% endblock %}</title>
+    <title>{% block title %}Менеджер задач{% endblock %}</title>
     {% bootstrap_css %}
     {% bootstrap_javascript %}
 </head>
@@ -13,39 +13,42 @@
     <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
-            <a class="navbar-brand" href="{% url 'index' %}">{% trans 'Hexlet Code' %}</a>
+            <a class="navbar-brand" href="{% url 'index' %}">{% trans 'Менеджер задач' %}</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="{% trans 'Переключить навигацию' %}">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'status_list' %}">{% trans 'Статусы' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'task_list' %}">{% trans 'Задачи' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'label_list' %}">{% trans 'Метки' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <form method="post" action="{% url 'logout' %}">
-                            {% csrf_token %}
-                            <button type="submit" class="nav-link btn btn-link">{% trans 'Выход' %}</button>
-                        </form>
-                    </li>
+                <ul class="navbar-nav">
+                    {% if not request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">{% trans 'Вход' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_create' %}">{% trans 'Регистрация' %}</a>
+                        </li>
                     {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">{% trans 'Вход' %}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_create' %}">{% trans 'Регистрация' %}</a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'status_list' %}">{% trans 'Статусы' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'label_list' %}">{% trans 'Метки' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'task_list' %}">{% trans 'Задачи' %}</a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}" class="d-inline">
+                                {% csrf_token %}
+                                <button class="btn btn-link nav-link" type="submit">{% trans 'Выход' %}</button>
+                            </form>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
@@ -65,17 +68,16 @@
     {% endif %}
 
     <!-- Контент -->
-    <main class="container mt-4 flex-grow-1">
-        {% block content %}
-        {% endblock %}
+    <main class="container mt-4 flex-fill">
+        {% block content %}{% endblock %}
     </main>
 
     <!-- Футер -->
     <footer class="mt-auto">
-      <hr>
-      <div class="container text-start mb-3">
-        <a href="https://ru.hexlet.io/" class="btn btn-link p-0">Hexlet</a>
-      </div>
+        <hr>
+        <div class="container text-start mb-3">
+            <a href="https://ru.hexlet.io/" class="btn btn-link p-0">Hexlet</a>
+        </div>
     </footer>
 </body>
 </html>
