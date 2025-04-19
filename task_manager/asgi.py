@@ -8,8 +8,11 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/asgi/
 """
 
 import os
-
+import dotenv
 from django.core.asgi import get_asgi_application
+
+# Подгружаем переменные из .env
+dotenv.load_dotenv()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'task_manager.settings')
 
