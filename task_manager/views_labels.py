@@ -1,3 +1,4 @@
+import rollbar
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -17,8 +18,18 @@ class LabelCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy("label_list")
 
     def form_valid(self, form):
+        response = super().form_valid(form)
         messages.success(self.request, "Метка успешно создана")
-        return super().form_valid(form)
+        # Отправка события в Rollbar для проверки интеграции
+        rollbar.report_message(
+            f"Label #{self.object.pk} («{self.object.name}») создана",
+            'info',
+            extra_data={
+                'user_id': self.request.user.id,
+                'label_name': self.object.name,
+            }
+        )
+        return response
 
 class LabelUpdateView(LoginRequiredMixin, UpdateView):
     model = Label
@@ -27,8 +38,9 @@ class LabelUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("label_list")
 
     def form_valid(self, form):
+        response = super().form_valid(form)
         messages.success(self.request, "Метка успешно обновлена")
-        return super().form_valid(form)
+        return response
 
 class LabelDeleteView(LoginRequiredMixin, DeleteView):
     model = Label
@@ -40,8 +52,14 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         label = self.get_object()
+        # Если метка используется в задаче — отказываем и логируем в Rollbar
         if Task.objects.filter(labels=label).exists():
             messages.error(request, "Невозможно удалить метку, потому что она используется")
+            rollbar.report_message(
+                f"Attempted to delete Label #{label.pk} («{label.name}») but it is in use",
+                'warning',
+                extra_data={'label_id': label.pk}
+            )
             return redirect("label_list")
         messages.success(request, "Метка успешно удалена")
         return super().delete(request, *args, **kwargs)
