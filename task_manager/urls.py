@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import index
+# from .views import rollbar_test  # тестовая вьюшка
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # # тестовая ссылка, по которой мы намеренно кинем exception:
+    # path('rollbar/test-error/', rollbar_test, name='rollbar_test'),
     path('', index, name='index'),
     path('', include('task_manager.urls_users')),
     path('', include('task_manager.urls_statuses')),
