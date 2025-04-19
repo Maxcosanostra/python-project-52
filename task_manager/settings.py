@@ -11,9 +11,14 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+import rollbar
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Load environment variables from .env file
+load_dotenv(BASE_DIR / '.env')
+
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
@@ -23,12 +28,17 @@ PROJECT_NAME = "hexlet-code"
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-keqckrtbz&8+61^wpwvu0&x)#c966-45(dkofs4#$*jtt0@yqm'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-keqckrtbz&8+61^wpwvu0&x)#c966-45(dkofs4#$*jtt0@yqm')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['webserver', '127.0.0.1', 'localhost', 'python-project-52-q6c1.onrender.com']
+ALLOWED_HOSTS = [
+    'webserver',
+    '127.0.0.1',
+    'localhost',
+    'python-project-52-q6c1.onrender.com'
+]
 
 LOGIN_REDIRECT_URL = "/"
 
@@ -55,6 +65,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Rollbar error tracking middleware
+    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
 
 ROOT_URLCONF = 'task_manager.urls'
@@ -133,3 +145,14 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Rollbar configuration
+ROLLBAR = {
+    'access_token': os.getenv('ROLLBAR_ACCESS_TOKEN'),
+    'environment': 'development' if DEBUG else 'production',
+    'code_version': '1.0',
+    'root': BASE_DIR,
+}
+
+# Initialize Rollbar
+rollbar.init(**ROLLBAR)
