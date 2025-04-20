@@ -1,5 +1,4 @@
-# Менеджер задач
-
+# Менеджер задач&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" alt="animation" align="left" width="40"/>
 Таск-менеджер на Django, реализующий CRUD для пользователей, статусов, меток и задач, а также интеграцию с Rollbar для сбора ошибок.
 
 
