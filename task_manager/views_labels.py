@@ -9,47 +9,51 @@ from django.contrib import messages
 
 from .models import Label, Task
 
+
 class LabelListView(LoginRequiredMixin, ListView):
     model = Label
     template_name = "labels/label_list.html"
     context_object_name = "labels"
 
+
 class LabelCreateView(LoginRequiredMixin, CreateView):
     model = Label
-    fields = ['name']
+    fields = ["name"]
     template_name = "labels/label_form.html"
     success_url = reverse_lazy("label_list")
 
     def form_valid(self, form):
         response = super().form_valid(form)
         messages.success(self.request, "Метка успешно создана")
-        if not settings.TESTING and settings.ROLLBAR['access_token']:
+        if not settings.TESTING and settings.ROLLBAR["access_token"]:
             rollbar.report_message(
                 f"Label #{self.object.pk} («{self.object.name}») создана",
-                'info',
+                "info",
                 extra_data={
-                    'user_id': self.request.user.id,
-                    'label_name': self.object.name,
-                }
+                    "user_id": self.request.user.id,
+                    "label_name": self.object.name,
+                },
             )
         return response
 
+
 class LabelUpdateView(LoginRequiredMixin, UpdateView):
     model = Label
-    fields = ['name']
+    fields = ["name"]
     template_name = "labels/label_form.html"
     success_url = reverse_lazy("label_list")
 
     def form_valid(self, form):
         response = super().form_valid(form)
         messages.success(self.request, "Метка успешно обновлена")
-        if not settings.TESTING and settings.ROLLBAR['access_token']:
+        if not settings.TESTING and settings.ROLLBAR["access_token"]:
             rollbar.report_message(
                 f"Label #{self.object.pk} («{self.object.name}») обновлена",
-                'info',
-                extra_data={'label_id': self.object.pk}
+                "info",
+                extra_data={"label_id": self.object.pk},
             )
         return response
+
 
 class LabelDeleteView(LoginRequiredMixin, DeleteView):
     model = Label
@@ -63,19 +67,22 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
         label = self.get_object()
         # Если метка используется в задаче — отказываем и логируем в Rollbar
         if Task.objects.filter(labels=label).exists():
-            messages.error(request, "Невозможно удалить метку, потому что она используется")
-            if not settings.TESTING and settings.ROLLBAR['access_token']:
+            messages.error(
+                request,
+                "Невозможно удалить метку, потому что она используется",
+            )
+            if not settings.TESTING and settings.ROLLBAR["access_token"]:
                 rollbar.report_message(
                     f"Attempted to delete Label #{label.pk} («{label.name}») but it is in use",
-                    'warning',
-                    extra_data={'label_id': label.pk}
+                    "warning",
+                    extra_data={"label_id": label.pk},
                 )
             return redirect("label_list")
         messages.success(request, "Метка успешно удалена")
-        if not settings.TESTING and settings.ROLLBAR['access_token']:
+        if not settings.TESTING and settings.ROLLBAR["access_token"]:
             rollbar.report_message(
                 f"Label #{label.pk} («{label.name}») удалена",
-                'info',
-                extra_data={'label_id': label.pk}
+                "info",
+                extra_data={"label_id": label.pk},
             )
         return super().delete(request, *args, **kwargs)

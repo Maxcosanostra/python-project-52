@@ -6,20 +6,23 @@ from django.contrib import messages
 from .models import Task
 from .filters import TaskFilter
 
+
 class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
     filterset_class = TaskFilter
     template_name = "tasks/task_list.html"
     context_object_name = "tasks"
 
+
 class TaskDetailView(LoginRequiredMixin, DetailView):
     model = Task
     template_name = "tasks/task_detail.html"
     context_object_name = "task"
 
+
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['name', 'description', 'assigned_to', 'status', 'labels']
+    fields = ["name", "description", "assigned_to", "status", "labels"]
     template_name = "tasks/task_form.html"
     success_url = reverse_lazy("task_list")
 
@@ -28,15 +31,17 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
         messages.success(self.request, "Задача успешно создана")
         return super().form_valid(form)
 
+
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
-    fields = ['name', 'description', 'assigned_to', 'status', 'labels']
+    fields = ["name", "description", "assigned_to", "status", "labels"]
     template_name = "tasks/task_form.html"
     success_url = reverse_lazy("task_list")
 
     def form_valid(self, form):
         messages.success(self.request, "Задача успешно обновлена")
         return super().form_valid(form)
+
 
 class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Task

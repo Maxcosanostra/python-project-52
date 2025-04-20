@@ -5,17 +5,17 @@ from .models import Task
 
 class TaskFilter(django_filters.FilterSet):
     my_tasks = django_filters.BooleanFilter(
-        method='filter_my_tasks',
+        method="filter_my_tasks",
         widget=forms.CheckboxInput,
-        label="Только мои задачи"
+        label="Только мои задачи",
     )
 
     class Meta:
         model = Task
         fields = {
-            'status': ['exact'],
-            'assigned_to': ['exact'],
-            'labels': ['exact'],
+            "status": ["exact"],
+            "assigned_to": ["exact"],
+            "labels": ["exact"],
         }
 
     def __init__(self, *args, **kwargs):

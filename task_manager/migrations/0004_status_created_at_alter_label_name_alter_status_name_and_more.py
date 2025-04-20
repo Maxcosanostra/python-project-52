@@ -8,59 +8,89 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('task_manager', '0003_label_task_labels'),
+        ("task_manager", "0003_label_task_labels"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='status',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, null=True, verbose_name='Date Created'),
+            model_name="status",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, null=True, verbose_name="Date Created"
+            ),
         ),
         migrations.AlterField(
-            model_name='label',
-            name='name',
-            field=models.CharField(max_length=100, unique=True, verbose_name='Name'),
+            model_name="label",
+            name="name",
+            field=models.CharField(
+                max_length=100, unique=True, verbose_name="Name"
+            ),
         ),
         migrations.AlterField(
-            model_name='status',
-            name='name',
-            field=models.CharField(max_length=100, unique=True, verbose_name='Name'),
+            model_name="status",
+            name="name",
+            field=models.CharField(
+                max_length=100, unique=True, verbose_name="Name"
+            ),
         ),
         migrations.AlterField(
-            model_name='task',
-            name='assigned_to',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='tasks_assigned', to=settings.AUTH_USER_MODEL, verbose_name='Assigned to'),
+            model_name="task",
+            name="assigned_to",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="tasks_assigned",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Assigned to",
+            ),
         ),
         migrations.AlterField(
-            model_name='task',
-            name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='tasks_created', to=settings.AUTH_USER_MODEL, verbose_name='Author'),
+            model_name="task",
+            name="author",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="tasks_created",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Author",
+            ),
         ),
         migrations.AlterField(
-            model_name='task',
-            name='created_at',
-            field=models.DateTimeField(auto_now_add=True, verbose_name='Created at'),
+            model_name="task",
+            name="created_at",
+            field=models.DateTimeField(
+                auto_now_add=True, verbose_name="Created at"
+            ),
         ),
         migrations.AlterField(
-            model_name='task',
-            name='description',
-            field=models.TextField(blank=True, verbose_name='Description'),
+            model_name="task",
+            name="description",
+            field=models.TextField(blank=True, verbose_name="Description"),
         ),
         migrations.AlterField(
-            model_name='task',
-            name='labels',
-            field=models.ManyToManyField(blank=True, related_name='tasks', to='task_manager.label', verbose_name='Labels'),
+            model_name="task",
+            name="labels",
+            field=models.ManyToManyField(
+                blank=True,
+                related_name="tasks",
+                to="task_manager.label",
+                verbose_name="Labels",
+            ),
         ),
         migrations.AlterField(
-            model_name='task',
-            name='name',
-            field=models.CharField(max_length=255, verbose_name='Name'),
+            model_name="task",
+            name="name",
+            field=models.CharField(max_length=255, verbose_name="Name"),
         ),
         migrations.AlterField(
-            model_name='task',
-            name='status',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, related_name='tasks', to='task_manager.status', verbose_name='Status'),
+            model_name="task",
+            name="status",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.PROTECT,
+                related_name="tasks",
+                to="task_manager.status",
+                verbose_name="Status",
+            ),
         ),
     ]

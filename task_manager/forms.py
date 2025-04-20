@@ -3,6 +3,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+
 class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(
         label=_("First name"),

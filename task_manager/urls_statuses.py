@@ -9,6 +9,14 @@ from .views_statuses import (
 urlpatterns = [
     path("statuses/", StatusListView.as_view(), name="status_list"),
     path("statuses/create/", StatusCreateView.as_view(), name="status_create"),
-    path("statuses/<int:pk>/update/", StatusUpdateView.as_view(), name="status_update"),
-    path("statuses/<int:pk>/delete/", StatusDeleteView.as_view(), name="status_delete"),
+    path(
+        "statuses/<int:pk>/update/",
+        StatusUpdateView.as_view(),
+        name="status_update",
+    ),
+    path(
+        "statuses/<int:pk>/delete/",
+        StatusDeleteView.as_view(),
+        name="status_delete",
+    ),
 ]

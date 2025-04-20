@@ -14,18 +14,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from .views import index
+
 # from .views import rollbar_test  # тестовая вьюшка
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # # тестовая ссылка, по которой мы намеренно кинем exception:
     # path('rollbar/test-error/', rollbar_test, name='rollbar_test'),
-    path('', index, name='index'),
-    path('', include('task_manager.urls_users')),
-    path('', include('task_manager.urls_statuses')),
-    path('', include('task_manager.urls_tasks')),
-    path('', include('task_manager.urls_labels')),
+    path("", index, name="index"),
+    path("", include("task_manager.urls_users")),
+    path("", include("task_manager.urls_statuses")),
+    path("", include("task_manager.urls_tasks")),
+    path("", include("task_manager.urls_labels")),
 ]
