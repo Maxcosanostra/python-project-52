@@ -2,84 +2,93 @@
 {% load i18n %}
 <!DOCTYPE html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Простой таск‑менеджер на Django с интеграцией Rollbar">
-    <meta name="keywords" content="Django, таск‑менеджер, Rollbar, CRUD">
-    <title>{% block title %}Менеджер задач{% endblock %}</title>
-    {% bootstrap_css %}
-    {% bootstrap_javascript %}
-</head>
-<body class="d-flex flex-column min-vh-100">
-    <!-- Навигация -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="{% url 'index' %}">{% trans 'Менеджер задач' %}</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="{% trans 'Переключить навигацию' %}">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    {% if not request.user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">{% trans 'Вход' %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'user_create' %}">{% trans 'Регистрация' %}</a>
-                        </li>
-                    {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'status_list' %}">{% trans 'Статусы' %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'label_list' %}">{% trans 'Метки' %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'task_list' %}">{% trans 'Задачи' %}</a>
-                        </li>
-                        <li class="nav-item">
-                            <form method="post" action="{% url 'logout' %}" class="d-inline">
-                                {% csrf_token %}
-                                <button class="btn btn-link nav-link" type="submit">{% trans 'Выход' %}</button>
-                            </form>
-                        </li>
-                    {% endif %}
-                </ul>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+              content="Простой таск‑менеджер на Django с интеграцией Rollbar">
+        <meta name="keywords" content="Django, таск‑менеджер, Rollbar, CRUD">
+        <title>
+            {% block title %}Менеджер задач{% endblock %}
+        </title>
+        {% bootstrap_css %}
+        {% bootstrap_javascript %}
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        <!-- Навигация -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'index' %}">{% trans 'Менеджер задач' %}</a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="{% trans 'Переключить навигацию' %}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        {% if not request.user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'login' %}">{% trans 'Вход' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'user_create' %}">{% trans 'Регистрация' %}</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'status_list' %}">{% trans 'Статусы' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'label_list' %}">{% trans 'Метки' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'task_list' %}">{% trans 'Задачи' %}</a>
+                            </li>
+                            <li class="nav-item">
+                                <form method="post" action="{% url 'logout' %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button class="btn btn-link nav-link" type="submit">{% trans 'Выход' %}</button>
+                                </form>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-
-    <!-- Flash -->
-    {% if messages %}
-      <div class="container mt-3">
-        {% for message in messages %}
-          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{% trans 'Закрыть' %}"></button>
-          </div>
-        {% endfor %}
-      </div>
-    {% endif %}
-
-    <!-- Контент -->
-    <main class="container mt-4 flex-fill">
-        {% block content %}{% endblock %}
-    </main>
-
-    <!-- Футер -->
-    <footer class="mt-auto">
-        <hr>
-        <div class="container text-start mb-3">
-            <a href="https://ru.hexlet.io/" class="btn btn-link p-0">Hexlet</a>
-        </div>
-    </footer>
-</body>
+        </nav>
+        <!-- Flash -->
+        {% if messages %}
+            <div class="container mt-3">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                         role="alert">
+                        {{ message }}
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="alert"
+                                aria-label="{% trans 'Закрыть' %}"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <!-- Контент -->
+        <main class="container mt-4 flex-fill">
+            {% block content %}{% endblock %}
+        </main>
+        <!-- Футер -->
+        <footer class="mt-auto">
+            <hr>
+            <div class="container text-start mb-3">
+                <a href="https://ru.hexlet.io/" class="btn btn-link p-0">Hexlet</a>
+            </div>
+        </footer>
+    </body>
 </html>

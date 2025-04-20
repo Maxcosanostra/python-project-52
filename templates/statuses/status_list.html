@@ -1,43 +1,38 @@
 {% extends "base.html" %}
 {% load i18n %}
-
-{% block title %}{% trans "Statuses" %}{% endblock %}
-
+{% block title %}
+    {% trans "Statuses" %}
+{% endblock %}
 {% block content %}
-<h1>{% trans "Statuses" %}</h1>
-<a href="{% url 'status_create' %}" class="btn btn-primary mb-3">
-    {% trans "Create New Status" %}
-</a>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">{% trans "ID" %}</th>
-            <th scope="col">{% trans "Name" %}</th>
-            <th scope="col">{% trans "Date Created" %}</th>
-            <th scope="col">{% trans "Actions" %}</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for status in statuses %}
-        <tr>
-            <td>{{ status.pk }}</td>
-            <td>{{ status.name }}</td>
-            <td>{{ status.created_at|date:"Y-m-d H:i" }}</td>
-            <td>
-                <a href="{% url 'status_update' status.pk %}" class="btn btn-sm btn-secondary">
-                    {% trans "Edit" %}
-                </a>
-                <a href="{% url 'status_delete' status.pk %}" class="btn btn-sm btn-danger">
-                    {% trans "Delete" %}
-                </a>
-            </td>
-        </tr>
-        {% empty %}
-        <tr>
-            <td colspan="4">{% trans "No statuses found." %}</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+    <h1>{% trans "Statuses" %}</h1>
+    <a href="{% url 'status_create' %}" class="btn btn-primary mb-3">{% trans "Create New Status" %}</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">{% trans "ID" %}</th>
+                <th scope="col">{% trans "Name" %}</th>
+                <th scope="col">{% trans "Date Created" %}</th>
+                <th scope="col">{% trans "Actions" %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for status in statuses %}
+                <tr>
+                    <td>{{ status.pk }}</td>
+                    <td>{{ status.name }}</td>
+                    <td>{{ status.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>
+                        <a href="{% url 'status_update' status.pk %}"
+                           class="btn btn-sm btn-secondary">{% trans "Edit" %}</a>
+                        <a href="{% url 'status_delete' status.pk %}"
+                           class="btn btn-sm btn-danger">{% trans "Delete" %}</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">{% trans "No statuses found." %}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

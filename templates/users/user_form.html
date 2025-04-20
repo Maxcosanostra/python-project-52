@@ -1,49 +1,39 @@
 {% extends "base.html" %}
 {% load django_bootstrap5 i18n %}
-
 {% block title %}
-  {% if object %}
-    {% trans "Изменение пользователя" %}
-  {% else %}
-    {% trans "Регистрация" %}
-  {% endif %}
-{% endblock %}
-
-{% block content %}
-  <h1 class="mb-4">
     {% if object %}
-      {% trans "Изменение пользователя" %}
+        {% trans "Изменение пользователя" %}
     {% else %}
-      {% trans "Регистрация" %}
+        {% trans "Регистрация" %}
     {% endif %}
-  </h1>
-
-  {% if object %}
-    <ul class="nav nav-tabs mb-4">
-      <li class="nav-item">
-        <a
-          class="nav-link active"
-          href="{% url 'user_update' object.pk %}"
-        >{% trans "Личные данные" %}</a>
-      </li>
-      <li class="nav-item">
-        <a
-          class="nav-link"
-          href="{% url 'password_change' %}"
-        >{% trans "Пароль" %}</a>
-      </li>
-    </ul>
-  {% endif %}
-
-  <form method="post">
-    {% csrf_token %}
-    {% bootstrap_form form %}
-    <button type="submit" class="btn btn-primary">
-      {% if object %}
-        {% trans "Сохранить" %}
-      {% else %}
-        {% trans "Зарегистрироваться" %}
-      {% endif %}
-    </button>
-  </form>
+{% endblock %}
+{% block content %}
+    <h1 class="mb-4">
+        {% if object %}
+            {% trans "Изменение пользователя" %}
+        {% else %}
+            {% trans "Регистрация" %}
+        {% endif %}
+    </h1>
+    {% if object %}
+        <ul class="nav nav-tabs mb-4">
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'user_update' object.pk %}">{% trans "Личные данные" %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'password_change' %}">{% trans "Пароль" %}</a>
+            </li>
+        </ul>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary">
+            {% if object %}
+                {% trans "Сохранить" %}
+            {% else %}
+                {% trans "Зарегистрироваться" %}
+            {% endif %}
+        </button>
+    </form>
 {% endblock %}
