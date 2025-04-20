@@ -2,7 +2,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
-from .models import Status
+from django.shortcuts import redirect
+from .models import Status, Task
 
 
 class StatusListView(LoginRequiredMixin, ListView):
@@ -13,7 +14,7 @@ class StatusListView(LoginRequiredMixin, ListView):
 
 class StatusCreateView(LoginRequiredMixin, CreateView):
     model = Status
-    fields = ["name"]  # Поле формы называется 'name'
+    fields = ["name"]
     template_name = "statuses/status_form.html"
     success_url = reverse_lazy("status_list")
 
@@ -38,7 +39,13 @@ class StatusDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "statuses/status_confirm_delete.html"
     success_url = reverse_lazy("status_list")
 
-    def delete(self, request, *args, **kwargs):
-        # status = self.get_object()
-        messages.success(self.request, "Статус успешно удален")
-        return super().delete(request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        status = self.get_object()
+        if Task.objects.filter(status=status).exists():
+            messages.error(
+                request,
+                "Невозможно удалить статус, потому что он используется"
+            )
+            return redirect("status_list")
+        messages.success(request, "Статус успешно удалён")
+        return super().post(request, *args, **kwargs)
