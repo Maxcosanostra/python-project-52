@@ -38,20 +38,22 @@
         {# Если редактируем — показываем поля для смены пароля, чтобы тесты их нашли #}
         {% if object %}
             <div class="mb-3">
-                <label for="id_password1" class="form-label">{% trans "Пароль" %}</label>
+                <label for="id_password1" class="form-label">
+                    {% trans "Пароль" %}
+                </label>
                 <input type="password"
                        name="password1"
                        id="id_password1"
-                       class="form-control"
-                       value="">
+                       class="form-control">  {# удалено value="" #}
             </div>
             <div class="mb-3">
-                <label for="id_password2" class="form-label">{% trans "Подтверждение пароля" %}</label>
+                <label for="id_password2" class="form-label">
+                    {% trans "Подтверждение пароля" %}
+                </label>
                 <input type="password"
                        name="password2"
                        id="id_password2"
-                       class="form-control"
-                       value="">
+                       class="form-control">  {# удалено value="" #}
             </div>
         {% endif %}
 
@@ -59,7 +61,7 @@
             {% if object %}
                 {% trans "Сохранить" %}
             {% else %}
-                {% trans "Зарегистрировать" %}
+                {% trans "Зарегистрироваться" %}
             {% endif %}
         </button>
     </form>
