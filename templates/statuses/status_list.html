@@ -7,9 +7,7 @@
 
 {% block content %}
     <h1>{% trans "Статусы" %}</h1>
-    <a href="{% url 'status_create' %}" class="btn btn-primary mb-3">
-        Создать статус
-    </a>
+    <a href="{% url 'status_create' %}" class="btn btn-primary mb-3">{% trans "Создать статус" %}</a>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -27,9 +25,9 @@
                     <td>{{ status.created_at|date:"Y-m-d H:i" }}</td>
                     <td>
                         <a href="{% url 'status_update' status.pk %}"
-                           class="btn btn-sm btn-secondary">Изменить</a>
+                           class="btn btn-sm btn-secondary">{% trans "Изменить" %}</a>
                         <a href="{% url 'status_delete' status.pk %}"
-                           class="btn btn-sm btn-danger">Удалить</a>
+                           class="btn btn-sm btn-danger">{% trans "Удалить" %}</a>
                     </td>
                 </tr>
             {% empty %}
