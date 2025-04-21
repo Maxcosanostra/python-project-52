@@ -3,27 +3,29 @@
 
 {% block title %}
     {% if object %}
-        {% trans "Edit Status" %}
+        {% trans "Изменить статус" %}
     {% else %}
-        {% trans "Create Status" %}
+        {% trans "Создать статус" %}
     {% endif %}
 {% endblock %}
 
 {% block content %}
     <h1>
         {% if object %}
-            {% trans "Edit Status" %}
+            {% trans "Изменить статус" %}
         {% else %}
-            {% trans "Create Status" %}
+            {% trans "Создать статус" %}
         {% endif %}
     </h1>
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        {% if object %}
-            <button type="submit" class="btn btn-primary">{% trans "Изменить" %}</button>
-        {% else %}
-            <button type="submit" class="btn btn-primary">{% trans "Создать" %}</button>
-        {% endif %}
+        <button type="submit" class="btn btn-primary">
+            {% if object %}
+                {% trans "Изменить" %}
+            {% else %}
+                {% trans "Создать" %}
+            {% endif %}
+        </button>
     </form>
 {% endblock %}
