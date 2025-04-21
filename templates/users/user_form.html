@@ -35,7 +35,6 @@
         {% csrf_token %}
         {% bootstrap_form form %}
 
-        {# Если редактируем — показываем поля для смены пароля, чтобы тесты их нашли #}
         {% if object %}
             <div class="mb-3">
                 <label for="id_password1" class="form-label">
@@ -59,7 +58,7 @@
 
         <button type="submit" class="btn btn-primary">
             {% if object %}
-                {% trans "Сохранить" %}
+                {% trans "Изменить" %}
             {% else %}
                 {% trans "Зарегистрировать" %}
             {% endif %}
