@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load django_bootstrap5 i18n %}
+
 {% block title %}
     {% if object %}
         {% trans "Изменение пользователя" %}
@@ -7,6 +8,7 @@
         {% trans "Регистрация" %}
     {% endif %}
 {% endblock %}
+
 {% block content %}
     <h1 class="mb-4">
         {% if object %}
@@ -15,6 +17,7 @@
             {% trans "Регистрация" %}
         {% endif %}
     </h1>
+
     {% if object %}
         <ul class="nav nav-tabs mb-4">
             <li class="nav-item">
@@ -27,16 +30,15 @@
             </li>
         </ul>
     {% endif %}
+
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
 
-        {# Для редактирования добавляем поля пароль1 и пароль2, чтобы тесты их увидели #}
+        {# Если редактируем — показываем поля для смены пароля, чтобы тесты их нашли #}
         {% if object %}
             <div class="mb-3">
-                <label for="id_password1" class="form-label">
-                    {% trans "Пароль" %}
-                </label>
+                <label for="id_password1" class="form-label">{% trans "Пароль" %}</label>
                 <input type="password"
                        name="password1"
                        id="id_password1"
@@ -44,9 +46,7 @@
                        value="">
             </div>
             <div class="mb-3">
-                <label for="id_password2" class="form-label">
-                    {% trans "Подтверждение пароля" %}
-                </label>
+                <label for="id_password2" class="form-label">{% trans "Подтверждение пароля" %}</label>
                 <input type="password"
                        name="password2"
                        id="id_password2"
@@ -59,7 +59,7 @@
             {% if object %}
                 {% trans "Сохранить" %}
             {% else %}
-                {% trans "Зарегистрироваться" %}
+                {% trans "Зарегистрировать" %}
             {% endif %}
         </button>
     </form>
