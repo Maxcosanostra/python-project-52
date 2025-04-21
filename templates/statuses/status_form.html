@@ -1,24 +1,41 @@
 {% extends "base.html" %}
-{% load django_bootstrap5 %}
 {% load i18n %}
+
 {% block title %}
     {% if object %}
-        {% trans "Edit Status" %}
+        {% trans "Редактировать статус" %}
     {% else %}
-        {% trans "Create Status" %}
+        {% trans "Создать статус" %}
     {% endif %}
 {% endblock %}
+
 {% block content %}
     <h1>
         {% if object %}
-            {% trans "Edit Status" %}
+            {% trans "Редактировать статус" %}
         {% else %}
-            {% trans "Create Status" %}
+            {% trans "Создать статус" %}
         {% endif %}
     </h1>
+
     <form method="post">
         {% csrf_token %}
-        {% bootstrap_form form %}
-        <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
+        <div class="mb-3">
+            <label for="id_name" class="form-label">{% trans "Имя" %}</label>
+            <input
+                type="text"
+                name="name"
+                id="id_name"
+                class="form-control"
+                value="{{ form.name.value|default_if_none:'' }}"
+            >
+        </div>
+        <button type="submit" class="btn btn-primary">
+            {% if object %}
+                {% trans "Сохранить" %}
+            {% else %}
+                {% trans "Создать" %}
+            {% endif %}
+        </button>
     </form>
 {% endblock %}
