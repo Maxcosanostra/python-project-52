@@ -89,7 +89,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
             return redirect("user_list")
         messages.success(
             request,
-            _("Ваш аккаунт успешно удалён."),
+            _("Пользователь успешно удален"),
         )
         return super().delete(request, *args, **kwargs)
 
