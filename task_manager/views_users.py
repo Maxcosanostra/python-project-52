@@ -10,8 +10,10 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+from django.shortcuts import redirect
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import Task
 
 
 class UserListView(ListView):
@@ -72,10 +74,22 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         return self.request.user.pk == self.get_object().pk
 
+    def post(self, request, *args, **kwargs):
+        return self.delete(request, *args, **kwargs)
+
     def delete(self, request, *args, **kwargs):
+        user = self.get_object()
+        has_authored = Task.objects.filter(author=user).exists()
+        has_assigned = Task.objects.filter(assigned_to=user).exists()
+        if has_authored or has_assigned:
+            messages.error(
+                request,
+                _("Невозможно удалить пользователя: есть связанные задачи."),
+            )
+            return redirect("user_list")
         messages.success(
-            self.request,
-            _("Your account has been deleted."),
+            request,
+            _("Ваш аккаунт успешно удалён."),
         )
         return super().delete(request, *args, **kwargs)
 
