@@ -12,6 +12,7 @@ dependencies = [
   "gunicorn",
   "python-dotenv",
   "rollbar",
+  "psycopg2-binary",
 ]
 
 [build-system]
