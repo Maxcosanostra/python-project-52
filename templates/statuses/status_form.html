@@ -1,5 +1,6 @@
+{# templates/status_form.html #}
 {% extends "base.html" %}
-{% load django_bootstrap5 i18n %}
+{% load i18n %}
 
 {% block title %}
     {% if object %}
@@ -19,7 +20,19 @@
     </h1>
     <form method="post">
         {% csrf_token %}
-        {% bootstrap_form form %}
+        <div class="mb-3">
+            <label for="id_name" class="form-label">{% trans "Имя" %}</label>
+            <input
+                type="text"
+                name="name"
+                id="id_name"
+                class="form-control{% if form.name.errors %} is-invalid{% endif %}"
+                value="{{ form.name.value|default_if_none:'' }}"
+            >
+            {% for error in form.name.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
         <button type="submit" class="btn btn-primary">
             {% if object %}
                 {% trans "Изменить" %}
