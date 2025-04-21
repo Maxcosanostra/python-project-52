@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 {% load i18n %}
+
 {% block title %}
-    {% trans "Users" %}
+    {% trans "Пользователи" %}
 {% endblock %}
+
 {% block content %}
-    <h1>{% trans "Users" %}</h1>
-    <a href="{% url 'user_create' %}" class="btn btn-primary mb-3">{% trans "Register New User" %}</a>
+    <h1>{% trans "Пользователи" %}</h1>
+    <a href="{% url 'user_create' %}" class="btn btn-primary mb-3">{% trans "Регистрация" %}</a>
     <table class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">{% trans "ID" %}</th>
-                <th scope="col">{% trans "Username" %}</th>
-                <th scope="col">{% trans "Full Name" %}</th>
-                <th scope="col">{% trans "Date Created" %}</th>
-                <th scope="col">{% trans "Actions" %}</th>
+                <th scope="col">{% trans "Имя пользователя" %}</th>
+                <th scope="col">{% trans "Полное имя" %}</th>
+                <th scope="col">{% trans "Дата регистрации" %}</th>
+                <th scope="col">{% trans "Действия" %}</th>
             </tr>
         </thead>
         <tbody>
@@ -26,14 +28,15 @@
                     <td>
                         {% if request.user.pk == user.pk %}
                             <a href="{% url 'user_update' user.pk %}"
-                               class="btn btn-sm btn-secondary">{% trans "Edit" %}</a>
-                            <a href="{% url 'user_delete' user.pk %}" class="btn btn-sm btn-danger">{% trans "Delete" %}</a>
+                               class="btn btn-sm btn-secondary">{% trans "Изменить" %}</a>
+                            <a href="{% url 'user_delete' user.pk %}"
+                               class="btn btn-sm btn-danger">{% trans "Удалить" %}</a>
                         {% endif %}
                     </td>
                 </tr>
             {% empty %}
                 <tr>
-                    <td colspan="5">{% trans "No users found." %}</td>
+                    <td colspan="5">{% trans "Пользователи не найдены." %}</td>
                 </tr>
             {% endfor %}
         </tbody>
