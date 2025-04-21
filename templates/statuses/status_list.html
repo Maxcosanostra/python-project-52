@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
+
 {% block title %}
-    {% trans "Statuses" %}
+    {% trans "Статусы" %}
 {% endblock %}
+
 {% block content %}
-    <h1>{% trans "Statuses" %}</h1>
-    <a href="{% url 'status_create' %}" class="btn btn-primary mb-3">{% trans "Create New Status" %}</a>
+    <h1>{% trans "Статусы" %}</h1>
+    <a href="{% url 'status_create' %}" class="btn btn-primary mb-3">
+        {% trans "Создать статус" %}
+    </a>
     <table class="table table-striped">
         <thead>
             <tr>
