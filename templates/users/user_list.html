@@ -7,7 +7,9 @@
 
 {% block content %}
     <h1>{% trans "Пользователи" %}</h1>
-    <a href="{% url 'user_create' %}" class="btn btn-primary mb-3">{% trans "Регистрация" %}</a>
+    <a href="{% url 'user_create' %}" class="btn btn-primary mb-3">
+        {% trans "Регистрация" %}
+    </a>
     <table class="table table-striped">
         <thead>
             <tr>
