@@ -13,8 +13,11 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 import sys
 from pathlib import Path
+
 from dotenv import load_dotenv
+import dj_database_url
 import rollbar
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,11 +25,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Load environment variables from .env file
 load_dotenv(BASE_DIR / ".env")
 
+
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 PROJECT_NAME = "hexlet-code"
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -97,13 +102,12 @@ WSGI_APPLICATION = "task_manager.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
+# Use DATABASE_URL if set (for CI / production), otherwise fallback to SQLite.
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+    )
 }
 
 
@@ -149,10 +153,12 @@ LOCALE_PATHS = [
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+
 # Rollbar configuration
-rollbar_token = os.getenv("ROLLBAR_ACCESS_TOKEN")
+
+ROLLBAR_TOKEN = os.getenv("ROLLBAR_ACCESS_TOKEN")
 ROLLBAR = {
-    "access_token": rollbar_token,
+    "access_token": ROLLBAR_TOKEN,
     "environment": "development" if DEBUG else "production",
     "code_version": "1.0",
     "root": BASE_DIR,
@@ -162,7 +168,7 @@ ROLLBAR = {
 TESTING = "test" in sys.argv
 
 # Initialize Rollbar only if we have a token and not in test mode
-if rollbar_token and not TESTING:
+if ROLLBAR_TOKEN and not TESTING:
     MIDDLEWARE.append(
         "rollbar.contrib.django.middleware.RollbarNotifierMiddleware"
     )
