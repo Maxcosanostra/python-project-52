@@ -48,7 +48,7 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def form_valid(self, form):
         messages.success(
             self.request,
-            _("Профиль успешно обновлен"),
+            _("Пользователь успешно изменен"),
         )
         return super().form_valid(form)
 
