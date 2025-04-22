@@ -3,9 +3,10 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django_filters.views import FilterView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+
 from .models import Task
 from .filters import TaskFilter
-
+from .forms import TaskForm
 
 class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
@@ -21,8 +22,7 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
 
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
-    model = Task
-    fields = ["name", "description", "assigned_to", "status", "labels"]
+    form_class = TaskForm                  # используем форму
     template_name = "tasks/task_form.html"
     success_url = reverse_lazy("task_list")
 
@@ -33,8 +33,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
 
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
-    model = Task
-    fields = ["name", "description", "assigned_to", "status", "labels"]
+    form_class = TaskForm                  # и здесь
     template_name = "tasks/task_form.html"
     success_url = reverse_lazy("task_list")
 
