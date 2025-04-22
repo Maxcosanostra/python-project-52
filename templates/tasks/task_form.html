@@ -3,22 +3,28 @@
 {% load i18n %}
 {% block title %}
     {% if object %}
-        {% trans "Edit Task" %}
+        {% trans "Изменить задачу" %}
     {% else %}
-        {% trans "Create Task" %}
+        {% trans "Создать задачу" %}
     {% endif %}
 {% endblock %}
 {% block content %}
     <h1>
         {% if object %}
-            {% trans "Edit Task" %}
+            {% trans "Изменить задачу" %}
         {% else %}
-            {% trans "Create Task" %}
+            {% trans "Создать задачу" %}
         {% endif %}
     </h1>
     <form method="post">
         {% csrf_token %}
         {% bootstrap_form form %}
-        <button type="submit" class="btn btn-primary">{% trans "Submit" %}</button>
+        <button type="submit" class="btn btn-primary">
+            {% if object %}
+                {% trans "Изменить" %}
+            {% else %}
+                {% trans "Создать" %}
+            {% endif %}
+        </button>
     </form>
 {% endblock %}
