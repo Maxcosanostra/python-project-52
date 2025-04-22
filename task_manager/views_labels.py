@@ -45,7 +45,7 @@ class LabelUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, "Метка успешно обновлена")
+        messages.success(self.request, "Метка успешно изменена")
         if not settings.TESTING and settings.ROLLBAR["access_token"]:
             rollbar.report_message(
                 f"Label #{self.object.pk} («{self.object.name}») обновлена",
