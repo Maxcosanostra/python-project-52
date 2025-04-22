@@ -62,4 +62,13 @@ class TaskForm(forms.ModelForm):
         widgets = {
             "name": forms.TextInput(attrs={"placeholder": _("Имя")}),
             "description": forms.Textarea(attrs={"placeholder": _("Описание")}),
+            "assigned_to": forms.Select(
+                attrs={"aria-label": _("Исполнитель")}
+            ),
+            "status": forms.Select(
+                attrs={"aria-label": _("Статус")}
+            ),
+            "labels": forms.SelectMultiple(
+                attrs={"aria-label": _("Метки")}
+            ),
         }
