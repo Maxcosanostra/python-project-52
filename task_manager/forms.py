@@ -2,6 +2,7 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import Task
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -46,3 +47,19 @@ class CustomUserChangeForm(forms.ModelForm):
             "last_name",
             "username",
         )
+
+class TaskForm(forms.ModelForm):
+    class Meta:
+        model = Task
+        fields = ["name", "description", "assigned_to", "status", "labels"]
+        labels = {
+            "name": _("Имя"),
+            "description": _("Описание"),
+            "assigned_to": _("Исполнитель"),
+            "status": _("Статус"),
+            "labels": _("Метки"),
+        }
+        widgets = {
+            "name": forms.TextInput(attrs={"placeholder": _("Имя")}),
+            "description": forms.Textarea(attrs={"placeholder": _("Описание")}),
+        }
