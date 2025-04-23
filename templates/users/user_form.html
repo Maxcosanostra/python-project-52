@@ -2,66 +2,25 @@
 {% load django_bootstrap5 i18n %}
 
 {% block title %}
-    {% if object %}
-        {% trans "Изменение пользователя" %}
-    {% else %}
-        {% trans "Регистрация" %}
+    {% if object %}{% trans "Изменение пользователя" %}
+    {% else %}{% trans "Регистрация" %}
     {% endif %}
 {% endblock %}
 
 {% block content %}
-    <h1 class="mb-4">
-        {% if object %}
-            {% trans "Изменение пользователя" %}
-        {% else %}
-            {% trans "Регистрация" %}
-        {% endif %}
-    </h1>
-
-    {% if object %}
-        <ul class="nav nav-tabs mb-4">
-            <li class="nav-item">
-                <a class="nav-link active"
-                   href="{% url 'user_update' object.pk %}">{% trans "Личные данные" %}</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"
-                   href="{% url 'password_change' %}">{% trans "Изменить пароль" %}</a>
-            </li>
-        </ul>
+<h1 class="mb-4">
+    {% if object %}{% trans "Изменение пользователя" %}
+    {% else %}{% trans "Регистрация" %}
     {% endif %}
+</h1>
 
-    <form method="post">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-
-        {% if object %}
-            <div class="mb-3">
-                <label for="id_password1" class="form-label">
-                    {% trans "Пароль" %}
-                </label>
-                <input type="password"
-                       name="password1"
-                       id="id_password1"
-                       class="form-control">
-            </div>
-            <div class="mb-3">
-                <label for="id_password2" class="form-label">
-                    {% trans "Подтверждение пароля" %}
-                </label>
-                <input type="password"
-                       name="password2"
-                       id="id_password2"
-                       class="form-control">
-            </div>
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">
+        {% if object %}{% trans "Изменить" %}
+        {% else %}{% trans "Зарегистрировать" %}
         {% endif %}
-
-        <button type="submit" class="btn btn-primary">
-            {% if object %}
-                {% trans "Изменить" %}
-            {% else %}
-                {% trans "Зарегистрировать" %}
-            {% endif %}
-        </button>
-    </form>
+    </button>
+</form>
 {% endblock %}
