@@ -38,7 +38,9 @@
             {% for task in tasks %}
                 <tr>
                     <td>{{ task.pk }}</td>
-                    <td><a href="{% url 'task_detail' task.pk %}">{{ task.name }}</a></td>
+                    <td>
+                        <a href="{% url 'task_detail' task.pk %}">{{ task.name }}</a>
+                    </td>
                     <td>{{ task.status.name }}</td>
                     <td>{{ task.author.get_full_name|default:task.author.username }}</td>
                     <td>
@@ -52,10 +54,20 @@
                            class="btn btn-sm btn-secondary">
                             {% trans "Изменить" %}
                         </a>
-                        <a href="{% url 'task_delete' task.pk %}"
-                           class="btn btn-sm btn-danger">
-                            {% trans "Удалить" %}
-                        </a>
+
+                        {# ───────────── изменённый блок «Удалить» ───────────── #}
+                        {% if request.user.pk == task.author.pk %}
+                            <a href="{% url 'task_delete' task.pk %}"
+                               class="btn btn-sm btn-danger">
+                                {% trans "Удалить" %}
+                            </a>
+                        {% else %}
+                            <a href="#"
+                               class="btn btn-sm btn-danger disabled"
+                               aria-disabled="true">
+                                {% trans "Удалить" %}
+                            </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% empty %}
