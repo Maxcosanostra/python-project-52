@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
+
 {% block title %}
     {% trans "Просмотр задачи" %}
 {% endblock %}
+
 {% block content %}
     <h1>{% trans "Просмотр задачи" %}</h1>
     <div class="bg-light border rounded-top">
@@ -16,11 +18,13 @@
                 <strong>{% trans "Статус:" %}</strong> {{ task.status.name }}
             </p>
             <p>
-                <strong>{% trans "Автор:" %}</strong> {{ task.author.username }}
+                <strong>{% trans "Автор:" %}</strong>
+                {{ task.author.get_full_name|default:task.author.username }}
             </p>
             {% if task.assigned_to %}
                 <p>
-                    <strong>{% trans "Исполнитель:" %}</strong> {{ task.assigned_to.username }}
+                    <strong>{% trans "Исполнитель:" %}</strong>
+                    {{ task.assigned_to.get_full_name|default:task.assigned_to.username }}
                 </p>
             {% endif %}
             <p>
@@ -29,12 +33,13 @@
             {% if task.labels.exists %}
                 <p>
                     <strong>{% trans "Метки:" %}</strong>
-                    {% for lbl in task.labels.all %}<span class="badge bg-secondary">{{ lbl.name }}</span>{% endfor %}
+                    {% for lbl in task.labels.all %}
+                        <span class="badge bg-secondary">{{ lbl.name }}</span>
+                    {% endfor %}
                 </p>
             {% endif %}
             <div class="mt-3">
                 <a href="{% url 'task_update' task.pk %}" class="btn btn-secondary">{% trans "Редактировать" %}</a>
-                {# Показываем кнопку удаления только автору задачи #}
                 {% if request.user.pk == task.author.pk %}
                     <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger">{% trans "Удалить" %}</a>
                 {% endif %}
