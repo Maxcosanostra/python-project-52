@@ -98,9 +98,9 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
 
         return super().dispatch(request, *args, **kwargs)
 
-    def delete(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         messages.success(request, _("Пользователь успешно удален"))
-        return super().delete(request, *args, **kwargs)
+        return super().post(request, *args, **kwargs)
 
 
 class LoginView(AuthLoginView):
