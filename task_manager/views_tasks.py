@@ -3,6 +3,9 @@ from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from django_filters.views import FilterView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib import messages
+from django.shortcuts import redirect
+from django.utils.translation import gettext_lazy as _
+
 
 from .models import Task
 from .filters import TaskFilter
@@ -45,14 +48,23 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = "tasks/task_confirm_delete.html"
     success_url = reverse_lazy("task_list")
 
-    def test_func(self):
-        return self.request.user.pk == self.get_object().author.pk
+    def dispatch(self, request, *args, **kwargs):
+        """Только автор может удалить задачу.
+
+        Если пользователь не автор, сразу уводим обратно
+        со всплывающим сообщением — без страницы подтверждения.
+        """
+        task = self.get_object()
+        if task.author != request.user:
+            messages.error(request, _("У вас нет прав для изменения"))
+            return redirect(self.success_url)
+        return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        messages.success(request, "Задача успешно удалена")
+        messages.success(request, _("Задача успешно удалена"))
         return super().post(request, *args, **kwargs)
