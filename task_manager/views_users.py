@@ -100,13 +100,12 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
 
     def delete(self, request, *args, **kwargs):
         self.object = self.get_object()
-        success_url = self.get_success_url()
-
-        self.object.delete()
 
         messages.success(request, _("Пользователь успешно удален"))
 
-        return redirect(success_url)
+        self.object.delete()
+
+        return redirect(self.get_success_url())
 
 
 class LoginView(AuthLoginView):
