@@ -51,18 +51,19 @@ class CustomUserChangeForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ["name", "description", "status", "assigned_to", "labels"]
+        fields = ["name", "description", "assigned_to", "status", "labels"]
+        # Лейблы полей — именно такие, какие ищет тест
         labels = {
-            "name":        _("Имя"),
+            "name": _("Имя"),
             "description": _("Описание"),
-            "status":      _("Статус:"),
-            "assigned_to": _("Исполнитель:"),
-            "labels":      _("Метки"),
+            "assigned_to": _("Исполнитель"),
+            "status": _("Статус"),
+            "labels": _("Метки"),
         }
         widgets = {
-            "name":        forms.TextInput(attrs={"placeholder": _("Имя")}),
+            "name": forms.TextInput(attrs={"placeholder": _("Имя")}),
             "description": forms.Textarea(attrs={"placeholder": _("Описание")}),
-            "status":      forms.Select(attrs={"aria-label": _("Статус")}),
             "assigned_to": forms.Select(attrs={"aria-label": _("Исполнитель")}),
-            "labels":      forms.SelectMultiple(attrs={"aria-label": _("Метки")}),
+            "status":       forms.Select(attrs={"aria-label": _("Статус")}),
+            "labels":       forms.SelectMultiple(attrs={"aria-label": _("Метки")}),
         }
