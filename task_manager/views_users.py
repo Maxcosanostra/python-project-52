@@ -7,7 +7,7 @@ from django.contrib.auth.views import (
     PasswordChangeView,
 )
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.shortcuts import redirect
@@ -36,7 +36,7 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
 
-class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = CustomUserChangeForm
     template_name = "users/user_form.html"
@@ -52,6 +52,12 @@ class UserUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         )
         return super().form_valid(form)
 
+    # гарантируем, что чужой профиль не редактируется
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.pk != kwargs["pk"]:
+            return redirect("user_list")
+        return super().dispatch(request, *args, **kwargs)
+
 
 class UserPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     form_class = PasswordChangeForm
@@ -66,13 +72,10 @@ class UserPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
         return super().form_valid(form)
 
 
-class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class UserDeleteView(LoginRequiredMixin, DeleteView):
     model = User
     template_name = "users/user_confirm_delete.html"
     success_url = reverse_lazy("user_list")
-
-    def test_func(self):
-        return self.request.user.pk == self.get_object().pk
 
     def post(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
@@ -87,10 +90,7 @@ class UserDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
                 _("Невозможно удалить пользователя: есть связанные задачи."),
             )
             return redirect("user_list")
-        messages.success(
-            request,
-            _("Пользователь успешно удален"),
-        )
+        messages.success(request, _("Пользователь успешно удален"))
         return super().delete(request, *args, **kwargs)
 
 
