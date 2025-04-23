@@ -16,10 +16,10 @@ class TaskForm(forms.ModelForm):
         self.fields["assigned_to"].label_from_instance = (
             lambda u: u.get_full_name() or u.username
         )
-
-
         self.fields["name"].label = _("Имя")
         self.fields["description"].label = _("Описание")
         self.fields["assigned_to"].label = _("Исполнитель")
         self.fields["status"].label = _("Статус")
         self.fields["labels"].label = _("Метки")
+
+        self.fields["assigned_to"].widget.attrs["id"] = "id_executor"
