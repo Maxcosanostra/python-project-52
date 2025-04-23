@@ -8,13 +8,17 @@
 
 {% block content %}
     <h1>{% trans "Задачи" %}</h1>
-    <a href="{% url 'task_create' %}" class="btn btn-primary mb-3">{% trans "Создать задачу" %}</a>
+    <a href="{% url 'task_create' %}" class="btn btn-primary mb-3">
+        {% trans "Создать задачу" %}
+    </a>
 
     <!-- Фильтрация -->
     <div class="container bg-light border p-3 mb-4">
         <form method="get" class="mb-0">
             {% bootstrap_form filter.form %}
-            <button type="submit" class="btn btn-primary">{% trans "Показать" %}</button>
+            <button type="submit" class="btn btn-primary">
+                {% trans "Показать" %}
+            </button>
         </form>
     </div>
 
@@ -45,11 +49,13 @@
                     <td>{{ task.created_at|date:"SHORT_DATETIME_FORMAT" }}</td>
                     <td>
                         <a href="{% url 'task_update' task.pk %}"
-                           class="btn btn-sm btn-secondary">{% trans "Изменить" %}</a>
-                        {% if request.user.pk == task.author.pk %}
-                            <a href="{% url 'task_delete' task.pk %}"
-                               class="btn btn-sm btn-danger">{% trans "Удалить" %}</a>
-                        {% endif %}
+                           class="btn btn-sm btn-secondary">
+                            {% trans "Изменить" %}
+                        </a>
+                        <a href="{% url 'task_delete' task.pk %}"
+                           class="btn btn-sm btn-danger">
+                            {% trans "Удалить" %}
+                        </a>
                     </td>
                 </tr>
             {% empty %}
