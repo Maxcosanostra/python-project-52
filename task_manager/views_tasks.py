@@ -6,7 +6,8 @@ from django.contrib import messages
 
 from .models import Task
 from .filters import TaskFilter
-from .forms import TaskForm
+from .forms_task import TaskForm
+
 
 class TaskListView(LoginRequiredMixin, FilterView):
     model = Task
@@ -22,7 +23,8 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
 
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
-    form_class = TaskForm                  # используем форму
+    model = Task
+    form_class = TaskForm
     template_name = "tasks/task_form.html"
     success_url = reverse_lazy("task_list")
 
@@ -33,7 +35,8 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
 
 class TaskUpdateView(LoginRequiredMixin, UpdateView):
-    form_class = TaskForm                  # и здесь
+    model = Task
+    form_class = TaskForm
     template_name = "tasks/task_form.html"
     success_url = reverse_lazy("task_list")
 
