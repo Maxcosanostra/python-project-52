@@ -73,7 +73,8 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
             )
             if not settings.TESTING and settings.ROLLBAR["access_token"]:
                 rollbar.report_message(
-                    f"Attempted to delete Label #{label.pk} («{label.name}») but it is in use",
+                    f"Attempted to delete Label "
+                    f"#{label.pk} («{label.name}») but it is in use",
                     "warning",
                     extra_data={"label_id": label.pk},
                 )
