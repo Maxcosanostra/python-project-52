@@ -6,4 +6,3 @@ from django.core.management import call_command
 def reset_db(db, django_db_blocker):
     django_db_blocker.unblock()
     call_command("flush", "--no-input")
-

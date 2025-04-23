@@ -85,9 +85,7 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
         if self._has_related_tasks(user):
             messages.error(
                 request,
-                _(
-                    "Невозможно удалить пользователя: есть связанные задачи."
-                ),
+                _("Невозможно удалить пользователя: есть связанные задачи."),
             )
             return redirect("user_list")
 
@@ -106,9 +104,7 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
         if self._has_related_tasks(user):
             messages.error(
                 request,
-                _(
-                    "Невозможно удалить пользователя: есть связанные задачи."
-                ),
+                _("Невозможно удалить пользователя: есть связанные задачи."),
             )
             return redirect("user_list")
 
