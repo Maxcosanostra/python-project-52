@@ -16,6 +16,7 @@ from django.views.generic import (
     ListView,
     UpdateView,
 )
+from django.contrib.auth import update_session_auth_hash
 
 from .forms import CustomUserChangeForm, CustomUserCreationForm
 from .models import Task
@@ -56,6 +57,14 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
+        user = form.instance
+
+        new_pwd = form.cleaned_data.get("password1")
+        if new_pwd:
+            user.set_password(new_pwd)
+            user.save(update_fields=["password"])
+            update_session_auth_hash(self.request, user)
+
         messages.success(self.request, _("Пользователь успешно изменен"))
         return super().form_valid(form)
 
