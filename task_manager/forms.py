@@ -11,8 +11,12 @@ from .models import Task
 class CustomUserCreationForm(UserCreationForm):
     """Форма регистрации."""
 
-    first_name = forms.CharField(label=_("First name"), max_length=30, required=False)
-    last_name = forms.CharField(label=_("Last name"), max_length=150, required=False)
+    first_name = forms.CharField(
+        label=_("First name"), max_length=30, required=False
+    )
+    last_name = forms.CharField(
+        label=_("Last name"), max_length=150, required=False
+    )
 
     class Meta(UserCreationForm.Meta):
         model = User
@@ -29,8 +33,12 @@ class CustomUserChangeForm(forms.ModelForm):
     """Форма редактирования профиля + смена пароля."""
 
     # личные данные
-    first_name = forms.CharField(label=_("First name"), max_length=30, required=False)
-    last_name = forms.CharField(label=_("Last name"), max_length=150, required=False)
+    first_name = forms.CharField(
+        label=_("First name"), max_length=30, required=False
+    )
+    last_name = forms.CharField(
+        label=_("Last name"), max_length=150, required=False
+    )
 
     # смена пароля
     password1 = forms.CharField(
@@ -86,8 +94,12 @@ class TaskForm(forms.ModelForm):
         }
         widgets = {
             "name": forms.TextInput(attrs={"placeholder": _("Имя")}),
-            "description": forms.Textarea(attrs={"placeholder": _("Описание")}),
-            "assigned_to": forms.Select(attrs={"aria-label": _("Исполнитель")}),
+            "description": forms.Textarea(
+                attrs={"placeholder": _("Описание")}
+            ),
+            "assigned_to": forms.Select(
+                attrs={"aria-label": _("Исполнитель")}
+            ),
             "status": forms.Select(attrs={"aria-label": _("Статус")}),
             "labels": forms.SelectMultiple(attrs={"aria-label": _("Метки")}),
         }

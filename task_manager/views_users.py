@@ -69,7 +69,9 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return super().form_valid(form)
 
 
-class UserPasswordChangeView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class UserPasswordChangeView(
+    LoginRequiredMixin, SuccessMessageMixin, UpdateView
+):
     model = User
     form_class = PasswordChangeForm
     template_name = "users/password_change_form.html"
