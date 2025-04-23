@@ -77,11 +77,16 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "users/user_confirm_delete.html"
     success_url = reverse_lazy("user_list")
 
-    def get(self, request, *args, **kwargs):
-        user = self.get_object()
+    def _cannot_delete(self, user):
+        is_foreign = self.request.user.pk != user.pk
         has_authored = Task.objects.filter(author=user).exists()
         has_assigned = Task.objects.filter(assigned_to=user).exists()
-        if has_authored or has_assigned:
+        return is_foreign or has_authored or has_assigned
+
+    # — GET —
+    def get(self, request, *args, **kwargs):
+        user = self.get_object()
+        if self._cannot_delete(user):
             messages.error(
                 request,
                 _("Невозможно удалить пользователя: есть связанные задачи."),
@@ -89,14 +94,13 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
             return redirect("user_list")
         return super().get(request, *args, **kwargs)
 
+
     def post(self, request, *args, **kwargs):
         return self.delete(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
         user = self.get_object()
-        has_authored = Task.objects.filter(author=user).exists()
-        has_assigned = Task.objects.filter(assigned_to=user).exists()
-        if has_authored or has_assigned:
+        if self._cannot_delete(user):
             messages.error(
                 request,
                 _("Невозможно удалить пользователя: есть связанные задачи."),
@@ -104,6 +108,7 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
             return redirect("user_list")
         messages.success(request, _("Пользователь успешно удален"))
         return super().delete(request, *args, **kwargs)
+
 
 
 class LoginView(AuthLoginView):
