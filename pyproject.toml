@@ -23,6 +23,10 @@ build-backend = "setuptools.build_meta"
 include = ["task_manager*"]
 exclude = ["templates", "locale"]
 
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "task_manager.settings"
+python_files = "task_manager/test_*.py"
+
 [tool.black]
 line-length = 79
 
