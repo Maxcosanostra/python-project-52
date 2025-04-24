@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}
-    {% trans "Просмотр задачи" %}
-{% endblock %}
+{% block title %}{% trans "Просмотр задачи" %}{% endblock %}
 
 {% block content %}
     <h1>{% trans "Просмотр задачи" %}</h1>
 
-    <div class="bg-light border rounded-top">
+    <div class="bg-body-tertiary border rounded-top">
         <div class="bg-secondary text-white p-3 rounded-top">
             <h2 class="mb-0">{{ task.name }}</h2>
         </div>

@@ -1,7 +1,7 @@
 {% load django_bootstrap5 %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-bs-theme="light">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,9 +14,10 @@
         {% bootstrap_css %}
         {% bootstrap_javascript %}
     </head>
+
     <body class="d-flex flex-column min-vh-100">
         <!-- Навигация -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">  {# ➋ новый класс #}
             <div class="container">
                 <a class="navbar-brand" href="{% url 'index' %}">{% trans 'Менеджер задач' %}</a>
                 <button class="navbar-toggler"
@@ -28,6 +29,7 @@
                         aria-label="{% trans 'Переключить навигацию' %}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         {% if not request.user.is_authenticated %}
@@ -61,9 +63,17 @@
                             </li>
                         {% endif %}
                     </ul>
+
+                    <button id="themeToggle"
+                            class="btn btn-outline-secondary ms-auto"
+                            type="button"
+                            aria-label="Toggle theme">
+                        <span id="themeIcon">☾</span>
+                    </button>
                 </div>
             </div>
         </nav>
+
         <!-- Flash -->
         {% if messages %}
             <div class="container mt-3">
@@ -79,10 +89,12 @@
                 {% endfor %}
             </div>
         {% endif %}
+
         <!-- Контент -->
         <main class="container mt-4 flex-fill">
             {% block content %}{% endblock %}
         </main>
+
         <!-- Футер -->
         <footer class="mt-auto">
             <hr>
@@ -90,5 +102,28 @@
                 <a href="https://ru.hexlet.io/" class="btn btn-link p-0">Hexlet</a>
             </div>
         </footer>
+
+        <!-- Скрипт переключения темы (сохраняет выбор в localStorage) -->
+        <script>
+            (() => {
+                const html = document.documentElement;
+                const btn  = document.getElementById('themeToggle');
+                const ico  = document.getElementById('themeIcon');
+
+                // применяем сохранённую тему (если есть)
+                const saved = localStorage.getItem('bs-theme');
+                if (saved) {
+                    html.setAttribute('data-bs-theme', saved);
+                    ico.textContent = saved === 'dark' ? '☀' : '☾';
+                }
+
+                btn.addEventListener('click', () => {
+                    const now = html.getAttribute('data-bs-theme') === 'dark' ? 'light' : 'dark';
+                    html.setAttribute('data-bs-theme', now);
+                    localStorage.setItem('bs-theme', now);
+                    ico.textContent = now === 'dark' ? '☀' : '☾';
+                });
+            })();
+        </script>
     </body>
 </html>
