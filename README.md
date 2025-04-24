@@ -1,9 +1,17 @@
+<div align="center">
+
+[![Actions Status](https://github.com/Maxcosanostra/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Maxcosanostra/python-project-52/actions)
+[![Live demo – Render](https://img.shields.io/badge/Live%20demo-Render-00c7d6?logo=render&logoColor=white)](https://python-project-52-q6c1.onrender.com)
+
+</div>
+
 # Менеджер задач&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/74038190/212284087-bbe7e430-757e-4901-90bf-4cd2ce3e1852.gif" alt="animation" align="left" width="40"/>
 Таск-менеджер на Django, реализующий CRUD для пользователей, статусов, меток и задач, а также интеграцию с Rollbar для сбора ошибок.
 
 
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/Maxcosanostra/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Maxcosanostra/python-project-52/actions)
+## Демо
+
+Чтобы быстро посмотреть приложение в действии, нажмите на бейдж сверху или откройте [сайт](https://python-project-52-q6c1.onrender.com) — регистрация свободная.
 
 
 ## Описание проекта
