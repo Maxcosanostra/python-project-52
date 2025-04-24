@@ -62,12 +62,17 @@ class TaskCrudTests(TestCase):
         self.assertFalse(Task.objects.filter(pk=self.task.pk).exists())
 
     def test_task_delete_by_non_author(self):
-        _other_user = User.objects.create_user(
+        _other = User.objects.create_user(
             username="other", password="OtherPassword123"
         )
         self.client.logout()
         self.client.login(username="other", password="OtherPassword123")
-        response = self.client.post(
-            reverse("task_delete", args=[self.task.pk])
+
+        url = reverse("task_delete", args=[self.task.pk])
+        response = self.client.post(url, follow=True)
+
+        self.assertRedirects(response, reverse("task_list"))
+        self.assertContains(
+            response,
+            "Задачу может удалить только ее автор",
         )
-        self.assertEqual(response.status_code, 403)
