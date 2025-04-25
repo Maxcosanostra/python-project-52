@@ -26,8 +26,8 @@ urlpatterns = [
     # # тестовая ссылка, по которой мы намеренно кинем exception:
     # path('rollbar/test-error/', rollbar_test, name='rollbar_test'),
     path("", index, name="index"),
-    path("", include("task_manager.urls_users")),
-    path("", include("task_manager.urls_statuses")),
-    path("", include("task_manager.urls_tasks")),
-    path("", include("task_manager.urls_labels")),
+    path("", include("task_manager.users.urls")),
+    path("statuses/", include("task_manager.statuses.urls")),
+    path("tasks/", include("task_manager.tasks.urls")),
+    path("labels/", include("task_manager.labels.urls")),
 ]
