@@ -23,4 +23,3 @@ class TaskForm(forms.ModelForm):
         self.fields["labels"].label = _("Метки")
 
         self.fields["assigned_to"].widget.attrs["id"] = "id_executor"
-

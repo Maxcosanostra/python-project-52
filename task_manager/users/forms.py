@@ -9,11 +9,15 @@ from django.utils.translation import gettext_lazy as _
 #  Регистрация
 # ------------------------------------------------------------------
 class CustomUserCreationForm(UserCreationForm):
-    first_name = forms.CharField(label=_("First name"), max_length=30, required=False)
-    last_name  = forms.CharField(label=_("Last name"),  max_length=150, required=False)
+    first_name = forms.CharField(
+        label=_("First name"), max_length=30, required=False
+    )
+    last_name = forms.CharField(
+        label=_("Last name"), max_length=150, required=False
+    )
 
     class Meta(UserCreationForm.Meta):
-        model  = User
+        model = User
         fields = (
             "first_name",
             "last_name",
@@ -28,8 +32,12 @@ class CustomUserCreationForm(UserCreationForm):
 # ------------------------------------------------------------------
 class CustomUserChangeForm(forms.ModelForm):
     # личные данные
-    first_name = forms.CharField(label=_("First name"), max_length=30, required=False)
-    last_name  = forms.CharField(label=_("Last name"),  max_length=150, required=False)
+    first_name = forms.CharField(
+        label=_("First name"), max_length=30, required=False
+    )
+    last_name = forms.CharField(
+        label=_("Last name"), max_length=150, required=False
+    )
 
     # смена пароля
     password1 = forms.CharField(
@@ -46,7 +54,7 @@ class CustomUserChangeForm(forms.ModelForm):
     )
 
     class Meta:
-        model  = User
+        model = User
         fields = (
             "first_name",
             "last_name",
@@ -60,10 +68,9 @@ class CustomUserChangeForm(forms.ModelForm):
         cleaned = super().clean()
         pwd1, pwd2 = cleaned.get("password1"), cleaned.get("password2")
 
-        if pwd1 or pwd2:                       # пароль меняем только если что-то ввели
+        if pwd1 or pwd2:  # пароль меняем только если что-то ввели
             if pwd1 != pwd2:
                 raise forms.ValidationError(_("Пароли не совпадают."))
             password_validation.validate_password(pwd1, self.instance)
 
         return cleaned
-

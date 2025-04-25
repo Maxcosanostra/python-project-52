@@ -9,4 +9,3 @@ class StatusForm(forms.ModelForm):
         model = Status
         fields = ("name",)
         labels = {"name": _("Имя")}
-

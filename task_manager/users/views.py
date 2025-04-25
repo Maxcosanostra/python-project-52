@@ -16,36 +16,38 @@ from django.views.generic import (
 )
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from ..tasks.models import Task   #  ← импорт из нового приложения
+from ..tasks.models import Task  #  ← импорт из нового приложения
 
 User = get_user_model()
 
 
 # ------------------------------------------------------------------ list
 class UserListView(ListView):
-    model               = User
-    template_name       = "users/user_list.html"
+    model = User
+    template_name = "users/user_list.html"
     context_object_name = "users"
 
 
 # ------------------------------------------------------------------ create
 class UserCreateView(CreateView):
-    model         = User
-    form_class    = CustomUserCreationForm
+    model = User
+    form_class = CustomUserCreationForm
     template_name = "users/user_form.html"
-    success_url   = reverse_lazy("login")
+    success_url = reverse_lazy("login")
 
     def form_valid(self, form):
-        messages.success(self.request, _("Registration successful. Please log in."))
+        messages.success(
+            self.request, _("Registration successful. Please log in.")
+        )
         return super().form_valid(form)
 
 
 # ------------------------------------------------------------------ update
 class UserUpdateView(LoginRequiredMixin, UpdateView):
-    model         = User
-    form_class    = CustomUserChangeForm
+    model = User
+    form_class = CustomUserChangeForm
     template_name = "users/user_form.html"
-    success_url   = reverse_lazy("user_list")
+    success_url = reverse_lazy("user_list")
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.pk != kwargs["pk"]:
@@ -54,7 +56,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        user    = form.instance
+        user = form.instance
         new_pwd = form.cleaned_data.get("password1")
         if new_pwd:
             user.set_password(new_pwd)
@@ -66,15 +68,15 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
 # ------------------------------------------------------------------ delete
 class UserDeleteView(LoginRequiredMixin, DeleteView):
-    model         = User
+    model = User
     template_name = "users/user_confirm_delete.html"
-    success_url   = reverse_lazy("user_list")
+    success_url = reverse_lazy("user_list")
 
     # --- helpers --------------------------------------------------------------
     def _has_related_tasks(self, user):
         return (
-            Task.objects.filter(author=user).exists() or
-            Task.objects.filter(assigned_to=user).exists()
+            Task.objects.filter(author=user).exists()
+            or Task.objects.filter(assigned_to=user).exists()
         )
 
     # --- permissions ----------------------------------------------------------
