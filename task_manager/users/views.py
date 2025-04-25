@@ -48,7 +48,9 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.pk != kwargs["pk"]:
-            messages.error(request, _("You don't have permission to change this"))
+            messages.error(
+                request, _("You don't have permission to change this")
+            )
             return redirect("user_list")
         return super().dispatch(request, *args, **kwargs)
 
@@ -77,7 +79,9 @@ class UserDeleteView(LoginRequiredMixin, DeleteView):
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         if request.user.pk != self.object.pk:
-            messages.error(request, _("You don't have permission to change this"))
+            messages.error(
+                request, _("You don't have permission to change this")
+            )
             return redirect("user_list")
 
         if self._has_related_tasks(self.object):
