@@ -1,7 +1,8 @@
 import django_filters
 from django import forms
 from django.contrib.auth.models import User
-from .models import Task
+
+from ..tasks.models import Task
 
 
 class TaskFilter(django_filters.FilterSet):
@@ -23,18 +24,22 @@ class TaskFilter(django_filters.FilterSet):
             "labels": ["exact"],
         }
 
+    # ----- мелкие доработки UI -------------------------------------------
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.get("request", None)
+        self.request = kwargs.get("request")
         super().__init__(*args, **kwargs)
 
         self.filters["status"].label = "Статус"
         self.filters["labels"].label = "Метка"
-
+        # фио вместо username
         self.filters["assigned_to"].field.label_from_instance = (
             lambda u: u.get_full_name() or u.username
         )
 
+    # ----- «только мои» ----------------------------------------------------
     def filter_my_tasks(self, queryset, name, value):
-        if value:
+        if value and self.request:
             return queryset.filter(author=self.request.user)
         return queryset
+
+

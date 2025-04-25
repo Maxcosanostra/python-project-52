@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from .models import Task
+from ..tasks.models import Task
 
 
 class TaskForm(forms.ModelForm):
@@ -12,6 +12,7 @@ class TaskForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
+        # читаемые подписи + id для select2 (если нужно)
         self.fields["assigned_to"].label_from_instance = (
             lambda u: u.get_full_name() or u.username
         )
@@ -22,3 +23,4 @@ class TaskForm(forms.ModelForm):
         self.fields["labels"].label = _("Метки")
 
         self.fields["assigned_to"].widget.attrs["id"] = "id_executor"
+

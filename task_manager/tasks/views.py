@@ -1,15 +1,19 @@
-from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
-from django_filters.views import FilterView
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.views.generic import (
+    CreateView,
+    UpdateView,
+    DeleteView,
+    DetailView,
+)
+from django_filters.views import FilterView
 
-
-from .models import Task
-from .filters import TaskFilter
-from .forms_task import TaskForm
+from ..tasks.filters import TaskFilter
+from ..tasks.forms import TaskForm
+from ..tasks.models import Task
 
 
 class TaskListView(LoginRequiredMixin, FilterView):
@@ -33,7 +37,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        messages.success(self.request, "Задача успешно создана")
+        messages.success(self.request, _("Задача успешно создана"))
         return super().form_valid(form)
 
 
@@ -44,7 +48,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("task_list")
 
     def form_valid(self, form):
-        messages.success(self.request, "Задача успешно изменена")
+        messages.success(self.request, _("Задача успешно изменена"))
         return super().form_valid(form)
 
 
@@ -53,12 +57,8 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "tasks/task_confirm_delete.html"
     success_url = reverse_lazy("task_list")
 
+    # — только автор —------------------------------------------------------
     def dispatch(self, request, *args, **kwargs):
-        """Только автор может удалить задачу.
-
-        Если пользователь не автор, сразу уводим обратно
-        со всплывающим сообщением — без страницы подтверждения.
-        """
         task = self.get_object()
         if task.author != request.user:
             messages.error(request, _("Задачу может удалить только ее автор"))
