@@ -129,8 +129,6 @@ msgid "Task successfully updated"
 msgstr "Задача успешно изменена"
 
 #: task_manager/tasks/views.py:64
-#, fuzzy
-#| msgid "Are you sure you want to delete this task?"
 msgid "Only the author can delete this task"
 msgstr "Задачу может удалить только ее автор"
 
