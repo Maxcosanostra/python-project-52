@@ -64,7 +64,7 @@ class TaskCrudTests(TestCase):
         self.assertFalse(Task.objects.filter(pk=self.task.pk).exists())
 
     def test_task_delete_by_non_author(self):
-        other = User.objects.create_user(
+        _other = User.objects.create_user(
             username="other", password="OtherPassword123"
         )
         self.client.logout()
