@@ -21,14 +21,12 @@ from ..tasks.models import Task
 User = get_user_model()
 
 
-# ------------------------------------------------------------------ list
 class UserListView(ListView):
     model = User
     template_name = "users/user_list.html"
     context_object_name = "users"
 
 
-# ------------------------------------------------------------------ create
 class UserCreateView(CreateView):
     model = User
     form_class = CustomUserCreationForm
@@ -42,7 +40,6 @@ class UserCreateView(CreateView):
         return super().form_valid(form)
 
 
-# ------------------------------------------------------------------ update
 class UserUpdateView(LoginRequiredMixin, UpdateView):
     model = User
     form_class = CustomUserChangeForm
@@ -51,7 +48,7 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if request.user.pk != kwargs["pk"]:
-            messages.error(request, _("У вас нет прав для изменения"))
+            messages.error(request, _("You don't have permission to change this"))
             return redirect("user_list")
         return super().dispatch(request, *args, **kwargs)
 
@@ -62,46 +59,41 @@ class UserUpdateView(LoginRequiredMixin, UpdateView):
             user.set_password(new_pwd)
             user.save(update_fields=["password"])
             update_session_auth_hash(self.request, user)
-        messages.success(self.request, _("Пользователь успешно изменен"))
+        messages.success(self.request, _("User successfully updated"))
         return super().form_valid(form)
 
 
-# ------------------------------------------------------------------ delete
 class UserDeleteView(LoginRequiredMixin, DeleteView):
     model = User
     template_name = "users/user_confirm_delete.html"
     success_url = reverse_lazy("user_list")
 
-    # --- helpers --------------------------------------------------------------
     def _has_related_tasks(self, user):
         return (
             Task.objects.filter(author=user).exists()
             or Task.objects.filter(assigned_to=user).exists()
         )
 
-    # --- permissions ----------------------------------------------------------
     def dispatch(self, request, *args, **kwargs):
         self.object = self.get_object()
         if request.user.pk != self.object.pk:
-            messages.error(request, _("У вас нет прав для изменения"))
+            messages.error(request, _("You don't have permission to change this"))
             return redirect("user_list")
 
         if self._has_related_tasks(self.object):
             messages.error(
                 request,
-                _("Невозможно удалить пользователя: есть связанные задачи."),
+                _("Cannot delete user: there are related tasks."),
             )
             return redirect("user_list")
 
         return super().dispatch(request, *args, **kwargs)
 
-    # --- actual delete --------------------------------------------------------
     def post(self, request, *args, **kwargs):
-        messages.success(request, _("Пользователь успешно удален"))
+        messages.success(request, _("User successfully deleted"))
         return super().post(request, *args, **kwargs)
 
 
-# ------------------------------------------------------------------ auth
 class LoginView(AuthLoginView):
     template_name = "users/login.html"
 

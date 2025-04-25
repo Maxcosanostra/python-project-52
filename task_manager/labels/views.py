@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import (
     ListView,
     CreateView,
@@ -10,7 +11,7 @@ from django.views.generic import (
     DeleteView,
 )
 
-import rollbar  # noqa:  E402 (может не быть в DEV-окружении)
+import rollbar
 
 from ..tasks.models import Task
 from .forms import LabelForm
@@ -31,12 +32,12 @@ class LabelCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, "Метка успешно создана")
+        messages.success(self.request, _("Label successfully created"))
 
         # Отправляем сообщение в Rollbar, если включён
         if not settings.TESTING and settings.ROLLBAR.get("access_token"):
             rollbar.report_message(
-                f"Label #{self.object.pk} («{self.object.name}») создана",
+                f"Label #{self.object.pk} («{self.object.name}») created",
                 "info",
                 extra_data={"user_id": self.request.user.id},
             )
@@ -51,11 +52,11 @@ class LabelUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        messages.success(self.request, "Метка успешно изменена")
+        messages.success(self.request, _("Label successfully updated"))
 
         if not settings.TESTING and settings.ROLLBAR.get("access_token"):
             rollbar.report_message(
-                f"Label #{self.object.pk} («{self.object.name}») обновлена",
+                f"Label #{self.object.pk} («{self.object.name}») updated",
                 "info",
                 extra_data={"label_id": self.object.pk},
             )
@@ -74,7 +75,7 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
         if Task.objects.filter(labels=label).exists():
             messages.error(
                 request,
-                "Невозможно удалить метку, потому что она используется",
+                _("Cannot delete label: it is in use"),
             )
             if not settings.TESTING and settings.ROLLBAR.get("access_token"):
                 rollbar.report_message(
@@ -85,10 +86,10 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
                 )
             return redirect("label_list")
 
-        messages.success(request, "Метка успешно удалена")
+        messages.success(request, _("Label successfully deleted"))
         if not settings.TESTING and settings.ROLLBAR.get("access_token"):
             rollbar.report_message(
-                f"Label #{label.pk} («{label.name}») удалена",
+                f"Label #{label.pk} («{label.name}») deleted",
                 "info",
                 extra_data={"label_id": label.pk},
             )

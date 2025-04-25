@@ -37,7 +37,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        messages.success(self.request, _("Задача успешно создана"))
+        messages.success(self.request, _("Task successfully created"))
         return super().form_valid(form)
 
 
@@ -48,7 +48,7 @@ class TaskUpdateView(LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("task_list")
 
     def form_valid(self, form):
-        messages.success(self.request, _("Задача успешно изменена"))
+        messages.success(self.request, _("Task successfully updated"))
         return super().form_valid(form)
 
 
@@ -61,10 +61,10 @@ class TaskDeleteView(LoginRequiredMixin, DeleteView):
     def dispatch(self, request, *args, **kwargs):
         task = self.get_object()
         if task.author != request.user:
-            messages.error(request, _("Задачу может удалить только ее автор"))
+            messages.error(request, _("Only the author can delete this task"))
             return redirect(self.success_url)
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        messages.success(request, _("Задача успешно удалена"))
+        messages.success(request, _("Task successfully deleted"))
         return super().post(request, *args, **kwargs)
