@@ -16,7 +16,7 @@ from django.views.generic import (
 )
 
 from .forms import CustomUserCreationForm, CustomUserChangeForm
-from ..tasks.models import Task  #  ← импорт из нового приложения
+from ..tasks.models import Task
 
 User = get_user_model()
 
