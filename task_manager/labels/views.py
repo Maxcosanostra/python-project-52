@@ -67,7 +67,7 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
     template_name = "labels/label_confirm_delete.html"
     success_url = reverse_lazy("label_list")
 
-    def delete(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         label = self.get_object()
 
         # запрет, если метка привязана к задачам
@@ -78,8 +78,8 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
             )
             if not settings.TESTING and settings.ROLLBAR.get("access_token"):
                 rollbar.report_message(
-                    f"Attempted to delete Label #{label.pk} "
-                    f"(«{label.name}») but it is in use",
+                    f"Attempted to delete Label "
+                    f"#{label.pk} («{label.name}») but it is in use",
                     "warning",
                     extra_data={"label_id": label.pk},
                 )
@@ -92,4 +92,4 @@ class LabelDeleteView(LoginRequiredMixin, DeleteView):
                 "info",
                 extra_data={"label_id": label.pk},
             )
-        return super().delete(request, *args, **kwargs)
+        return super().post(request, *args, **kwargs)
