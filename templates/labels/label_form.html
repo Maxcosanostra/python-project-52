@@ -3,24 +3,24 @@
 
 {% block title %}
     {% if object %}
-        {% trans "Изменить метку" %}
+        {% trans "Edit label" %}
     {% else %}
-        {% trans "Создать метку" %}
+        {% trans "Create label" %}
     {% endif %}
 {% endblock %}
 
 {% block content %}
     <h1>
         {% if object %}
-            {% trans "Изменить метку" %}
+            {% trans "Edit label" %}
         {% else %}
-            {% trans "Создать метку" %}
+            {% trans "Create label" %}
         {% endif %}
     </h1>
     <form method="post">
         {% csrf_token %}
         <div class="mb-3">
-            <label for="id_name" class="form-label">{% trans "Имя" %}</label>
+            <label for="id_name" class="form-label">{% trans "Name" %}</label>
             <input
                 type="text"
                 name="name"
@@ -34,9 +34,9 @@
         </div>
         <button type="submit" class="btn btn-primary">
             {% if object %}
-                {% trans "Изменить" %}
+                {% trans "Edit" %}
             {% else %}
-                {% trans "Создать" %}
+                {% trans "Create" %}
             {% endif %}
         </button>
     </form>

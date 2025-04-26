@@ -2,15 +2,17 @@
 {% load i18n %}
 
 {% block title %}
-    {% trans "Подтвердить удаление" %}
+    {% trans "Confirm deletion" %}
 {% endblock %}
 
 {% block content %}
-    <h1>{% trans "Подтвердить удаление" %}</h1>
-    <p>{% trans "Вы уверены, что хотите удалить эту метку?" %}</p>
+    <h1>{% trans "Confirm deletion" %}</h1>
+    <p>{% trans "Are you sure you want to delete this label?" %}</p>
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">{% trans "Да, удалить" %}</button>
-        <a href="{% url 'label_list' %}" class="btn btn-secondary">{% trans "Отмена" %}</a>
+        <button type="submit" class="btn btn-danger">
+            {% trans "Yes, delete" %}
+        </button>
+        <a href="{% url 'label_list' %}" class="btn btn-link">{% trans "Cancel" %}</a>
     </form>
 {% endblock %}
