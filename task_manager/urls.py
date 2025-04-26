@@ -23,6 +23,7 @@ from .views import index
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("i18n/", include("django.conf.urls.i18n")),
     # # тестовая ссылка, по которой мы намеренно кинем exception:
     # path('rollbar/test-error/', rollbar_test, name='rollbar_test'),
     path("", index, name="index"),
