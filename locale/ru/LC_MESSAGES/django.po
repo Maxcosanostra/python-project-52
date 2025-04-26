@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-26 03:51+0500\n"
+"POT-Creation-Date: 2025-04-26 00:27+0000\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -20,24 +20,23 @@ msgstr ""
 
 #: task_manager/labels/apps.py:8 task_manager/labels/models.py:13
 #: task_manager/tasks/forms.py:23 templates/base.html:53
-#: templates/labels/label_list.html:4 templates/labels/label_list.html:7
 msgid "Метки"
 msgstr ""
 
 #: task_manager/labels/forms.py:11 task_manager/statuses/forms.py:11
 #: task_manager/tasks/forms.py:19 templates/labels/label_form.html:23
-#: templates/labels/label_list.html:13 templates/statuses/status_form.html:24
+#: templates/statuses/status_form.html:24
 msgid "Имя"
 msgstr ""
 
 #: task_manager/labels/models.py:6 task_manager/statuses/models.py:6
-#: task_manager/tasks/models.py:9 templates/statuses/status_list.html:15
-#: templates/tasks/task_filter.html:16
+#: task_manager/tasks/models.py:9 templates/labels/label_list.html:15
+#: templates/statuses/status_list.html:15 templates/tasks/task_filter.html:16
 msgid "Name"
-msgstr "Название"
+msgstr "Имя"
 
 #: task_manager/labels/models.py:8 task_manager/statuses/models.py:8
-#: templates/statuses/status_list.html:16
+#: templates/labels/label_list.html:16 templates/statuses/status_list.html:16
 msgid "Date Created"
 msgstr "Дата создания"
 
@@ -112,7 +111,8 @@ msgstr "Статус"
 msgid "Author"
 msgstr "Автор"
 
-#: task_manager/tasks/models.py:35
+#: task_manager/tasks/models.py:35 templates/labels/label_list.html:5
+#: templates/labels/label_list.html:9
 msgid "Labels"
 msgstr "Метки"
 
@@ -164,27 +164,27 @@ msgstr ""
 msgid "Registration successful. Please log in."
 msgstr "Пользователь успешно зарегистрирован. Пожалуйста, залогиньтесь"
 
-#: task_manager/users/views.py:51 task_manager/users/views.py:80
+#: task_manager/users/views.py:52 task_manager/users/views.py:83
 msgid "You don't have permission to change this"
 msgstr "У вас нет прав для изменения"
 
-#: task_manager/users/views.py:62
+#: task_manager/users/views.py:64
 msgid "User successfully updated"
 msgstr "Пользователь успешно изменен"
 
-#: task_manager/users/views.py:86
+#: task_manager/users/views.py:90
 msgid "Cannot delete user: there are related tasks."
 msgstr "Невозможно удалить пользователя: есть связанные задачи"
 
-#: task_manager/users/views.py:93
+#: task_manager/users/views.py:97
 msgid "User successfully deleted"
 msgstr "Пользователь успешно удален"
 
-#: task_manager/users/views.py:101
+#: task_manager/users/views.py:105
 msgid "You are logged in."
 msgstr "Вы залогинены"
 
-#: task_manager/users/views.py:109
+#: task_manager/users/views.py:113
 msgid "You have been logged out."
 msgstr "Вы разлогинены"
 
@@ -219,7 +219,7 @@ msgstr ""
 msgid "Выход"
 msgstr ""
 
-#: templates/base.html:87
+#: templates/base.html:99
 msgid "Закрыть"
 msgstr "Закрыть"
 
@@ -266,12 +266,10 @@ msgid "Изменить метку"
 msgstr ""
 
 #: templates/labels/label_form.html:8 templates/labels/label_form.html:17
-#: templates/labels/label_list.html:8
 msgid "Создать метку"
 msgstr ""
 
-#: templates/labels/label_form.html:37 templates/labels/label_list.html:26
-#: templates/statuses/status_form.html:38
+#: templates/labels/label_form.html:37 templates/statuses/status_form.html:38
 #: templates/statuses/status_list.html:28 templates/tasks/task_form.html:24
 #: templates/tasks/task_list.html:49 templates/users/user_form.html:21
 #: templates/users/user_list.html:33
@@ -283,29 +281,31 @@ msgstr ""
 msgid "Создать"
 msgstr ""
 
-#: templates/labels/label_list.html:12 templates/statuses/status_list.html:14
+#: templates/labels/label_list.html:10
+msgid "Create label"
+msgstr "Создать метку"
+
+#: templates/labels/label_list.html:14 templates/statuses/status_list.html:14
 #: templates/tasks/task_list.html:24 templates/users/user_list.html:16
 msgid "ID"
 msgstr ""
 
-#: templates/labels/label_list.html:14
-msgid "Дата создания"
-msgstr ""
+#: templates/labels/label_list.html:17 templates/statuses/status_list.html:17
+#: templates/tasks/task_filter.html:19
+msgid "Actions"
+msgstr "Действия"
 
-#: templates/labels/label_list.html:15 templates/tasks/task_list.html:30
-#: templates/users/user_list.html:20
-msgid "Действия"
-msgstr ""
+#: templates/labels/label_list.html:27 templates/tasks/task_filter.html:32
+msgid "Edit"
+msgstr "Изменить"
 
-#: templates/labels/label_list.html:28 templates/statuses/status_list.html:30
-#: templates/tasks/task_detail.html:40 templates/tasks/task_list.html:54
-#: templates/users/user_list.html:36
-msgid "Удалить"
-msgstr ""
+#: templates/labels/label_list.html:28 templates/tasks/task_filter.html:34
+msgid "Delete"
+msgstr "Удалить"
 
 #: templates/labels/label_list.html:33
-msgid "Метки не найдены."
-msgstr ""
+msgid "No labels found."
+msgstr "Метки не найдены."
 
 #: templates/statuses/status_confirm_delete.html:10
 msgid "Вы уверены, что хотите удалить этот статус?"
@@ -320,9 +320,10 @@ msgstr ""
 msgid "Создать статус"
 msgstr ""
 
-#: templates/statuses/status_list.html:17 templates/tasks/task_filter.html:19
-msgid "Actions"
-msgstr "Действия"
+#: templates/statuses/status_list.html:30 templates/tasks/task_detail.html:40
+#: templates/tasks/task_list.html:54 templates/users/user_list.html:36
+msgid "Удалить"
+msgstr ""
 
 #: templates/statuses/status_list.html:35
 msgid "No statuses found."
@@ -372,14 +373,6 @@ msgstr "Фильтр задач"
 msgid "Filter"
 msgstr "Фильтр"
 
-#: templates/tasks/task_filter.html:32
-msgid "Edit"
-msgstr "Редактировать"
-
-#: templates/tasks/task_filter.html:34
-msgid "Delete"
-msgstr "Удалить"
-
 #: templates/tasks/task_filter.html:40
 msgid "No tasks found."
 msgstr "Задачи не найдены."
@@ -407,6 +400,10 @@ msgstr ""
 
 #: templates/tasks/task_list.html:29
 msgid "Создано"
+msgstr ""
+
+#: templates/tasks/task_list.html:30 templates/users/user_list.html:20
+msgid "Действия"
 msgstr ""
 
 #: templates/tasks/task_list.html:60
@@ -496,17 +493,11 @@ msgstr ""
 #~ msgid "Edit Label"
 #~ msgstr "Редактировать метку"
 
-#~ msgid "Create Label"
-#~ msgstr "Создать метку"
-
 #~ msgid "Submit"
 #~ msgstr "Отправить"
 
 #~ msgid "Create New Label"
 #~ msgstr "Создать новую метку"
-
-#~ msgid "No labels found."
-#~ msgstr "Метки не найдены."
 
 #~ msgid "Are you sure you want to delete this status?"
 #~ msgstr "Вы уверены, что хотите удалить этот статус?"
