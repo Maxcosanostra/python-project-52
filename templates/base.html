@@ -70,6 +70,18 @@
                             aria-label="Toggle theme">
                         <span id="themeIcon">☾</span>
                     </button>
+                    <!-- переключатель языка -->
+                    <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center ms-2">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                        <button name="language" value="ru" type="submit" class="btn btn-sm btn-outline-primary me-1">
+                            RU
+                        </button>
+                        <button name="language" value="en" type="submit" class="btn btn-sm btn-outline-primary">
+                            EN
+                        </button>
+                    </form>
+
                 </div>
             </div>
         </nav>
