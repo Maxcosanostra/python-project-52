@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Менеджер задач" %}{% endblock %}
+{% block title %}{% trans 'Task Manager' %}{% endblock %}
 
 {% block content %}
     <div class="container bg-body-tertiary border rounded p-4 my-5 text-start">
         <h1 class="display-4 text-body-emphasis">
-            {% trans "Привет от Хекслета!" %}
+            {% trans 'Hi from Hexlet!' %}
         </h1>
 
-        <p class="lead">{% trans "Практические курсы по программированию" %}</p>
+        <p class="lead">{% trans 'Hands-on programming courses' %}</p>
         <hr class="my-4">
 
         <a class="btn btn-primary btn-lg"
            href="https://ru.hexlet.io/"
            role="button">
-            {% trans "Узнать больше" %}
+            {% trans 'Learn more' %}
         </a>
     </div>
 {% endblock %}

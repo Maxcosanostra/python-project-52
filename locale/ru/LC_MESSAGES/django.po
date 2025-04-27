@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-27 18:47+0500\n"
+"POT-Creation-Date: 2025-04-27 20:13+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -195,7 +195,7 @@ msgstr "Вы залогинены"
 msgid "You have been logged out."
 msgstr "Вы разлогинены"
 
-#: templates/base.html:22 templates/index.html:4
+#: templates/base.html:22
 msgid "Менеджер задач"
 msgstr ""
 
@@ -227,17 +227,21 @@ msgstr ""
 msgid "Закрыть"
 msgstr "Закрыть"
 
+#: templates/index.html:4
+msgid "Task Manager"
+msgstr "Менеджер задач"
+
 #: templates/index.html:9
-msgid "Привет от Хекслета!"
-msgstr ""
+msgid "Hi from Hexlet!"
+msgstr "Привет от Хекслета!"
 
 #: templates/index.html:12
-msgid "Практические курсы по программированию"
-msgstr ""
+msgid "Hands-on programming courses"
+msgstr "Практические курсы по программированию"
 
 #: templates/index.html:18
-msgid "Узнать больше"
-msgstr ""
+msgid "Learn more"
+msgstr "Узнать больше"
 
 #: templates/labels/label_confirm_delete.html:5
 #: templates/labels/label_confirm_delete.html:9
