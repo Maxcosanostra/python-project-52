@@ -1,7 +1,4 @@
-"""
-Don't forget to rename this file to .env and replace the values with your own.
-
-"""
+# Don't forget to rename this file to .env and replace the values with your own.
 
 DJANGO_SECRET_KEY=ryw9&nyufyk_*6@bsetqjxg3)hr(&*w8ic_npo=ya=tx-07r7j
-ROLLBAR_ACCESS_TOKEN='insert your key here'
+ROLLBAR_ACCESS_TOKEN=insert-your-token-here
