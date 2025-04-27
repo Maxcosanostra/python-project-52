@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-27 05:08+0500\n"
+"POT-Creation-Date: 2025-04-27 05:34+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -32,6 +32,7 @@ msgstr ""
 #: task_manager/tasks/models.py:9 templates/labels/label_form.html:23
 #: templates/labels/label_list.html:15 templates/statuses/status_form.html:23
 #: templates/statuses/status_list.html:17 templates/tasks/task_filter.html:16
+#: templates/tasks/task_list.html:25
 msgid "Name"
 msgstr "Имя"
 
@@ -66,7 +67,6 @@ msgid "Статусы"
 msgstr ""
 
 #: task_manager/statuses/models.py:12 task_manager/tasks/forms.py:22
-#: templates/tasks/task_list.html:26
 msgid "Статус"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr "Статус успешно удален"
 msgid "Описание"
 msgstr ""
 
-#: task_manager/tasks/forms.py:21 templates/tasks/task_list.html:28
+#: task_manager/tasks/forms.py:21
 msgid "Исполнитель"
 msgstr ""
 
@@ -103,10 +103,12 @@ msgid "Assigned to"
 msgstr "Исполнитель:"
 
 #: task_manager/tasks/models.py:23 templates/tasks/task_filter.html:17
+#: templates/tasks/task_list.html:26
 msgid "Status"
 msgstr "Статус"
 
 #: task_manager/tasks/models.py:29 templates/tasks/task_filter.html:18
+#: templates/tasks/task_list.html:27
 msgid "Author"
 msgstr "Автор"
 
@@ -115,7 +117,7 @@ msgstr "Автор"
 msgid "Labels"
 msgstr "Метки"
 
-#: task_manager/tasks/models.py:40
+#: task_manager/tasks/models.py:40 templates/tasks/task_list.html:29
 msgid "Created at"
 msgstr "Дата создания"
 
@@ -209,8 +211,7 @@ msgstr "Вход"
 msgid "Регистрация"
 msgstr ""
 
-#: templates/base.html:56 templates/tasks/task_list.html:5
-#: templates/tasks/task_list.html:8
+#: templates/base.html:56
 msgid "Задачи"
 msgstr ""
 
@@ -268,6 +269,7 @@ msgstr "Создать метку"
 #: templates/labels/label_form.html:37 templates/labels/label_list.html:27
 #: templates/statuses/status_form.html:37
 #: templates/statuses/status_list.html:30 templates/tasks/task_filter.html:32
+#: templates/tasks/task_list.html:48
 msgid "Edit"
 msgstr "Изменить"
 
@@ -281,12 +283,12 @@ msgid "ID"
 msgstr ""
 
 #: templates/labels/label_list.html:17 templates/statuses/status_list.html:19
-#: templates/tasks/task_filter.html:19
+#: templates/tasks/task_filter.html:19 templates/tasks/task_list.html:30
 msgid "Actions"
 msgstr "Действия"
 
 #: templates/labels/label_list.html:28 templates/statuses/status_list.html:32
-#: templates/tasks/task_filter.html:34
+#: templates/tasks/task_filter.html:34 templates/tasks/task_list.html:50
 msgid "Delete"
 msgstr "Удалить"
 
@@ -361,8 +363,7 @@ msgstr ""
 msgid "Редактировать"
 msgstr ""
 
-#: templates/tasks/task_detail.html:40 templates/tasks/task_list.html:54
-#: templates/users/user_list.html:36
+#: templates/tasks/task_detail.html:40 templates/users/user_list.html:36
 msgid "Удалить"
 msgstr ""
 
@@ -378,7 +379,7 @@ msgstr "Фильтр задач"
 msgid "Filter"
 msgstr "Фильтр"
 
-#: templates/tasks/task_filter.html:40
+#: templates/tasks/task_filter.html:40 templates/tasks/task_list.html:55
 msgid "No tasks found."
 msgstr "Задачи не найдены."
 
@@ -387,12 +388,11 @@ msgid "Изменить задачу"
 msgstr ""
 
 #: templates/tasks/task_form.html:8 templates/tasks/task_form.html:16
-#: templates/tasks/task_list.html:10
 msgid "Создать задачу"
 msgstr ""
 
-#: templates/tasks/task_form.html:24 templates/tasks/task_list.html:49
-#: templates/users/user_form.html:21 templates/users/user_list.html:33
+#: templates/tasks/task_form.html:24 templates/users/user_form.html:21
+#: templates/users/user_list.html:33
 msgid "Изменить"
 msgstr ""
 
@@ -400,29 +400,21 @@ msgstr ""
 msgid "Создать"
 msgstr ""
 
+#: templates/tasks/task_list.html:5 templates/tasks/task_list.html:8
+msgid "Tasks"
+msgstr "Задачи"
+
+#: templates/tasks/task_list.html:10
+msgid "Create task"
+msgstr "Создать задачу"
+
 #: templates/tasks/task_list.html:17
-msgid "Показать"
-msgstr ""
+msgid "Show"
+msgstr "Показать"
 
-#: templates/tasks/task_list.html:25
-msgid "Название"
-msgstr ""
-
-#: templates/tasks/task_list.html:27
-msgid "Автор"
-msgstr ""
-
-#: templates/tasks/task_list.html:29
-msgid "Создано"
-msgstr ""
-
-#: templates/tasks/task_list.html:30 templates/users/user_list.html:20
-msgid "Действия"
-msgstr ""
-
-#: templates/tasks/task_list.html:60
-msgid "Задачи не найдены."
-msgstr ""
+#: templates/tasks/task_list.html:28
+msgid "Executor"
+msgstr "Исполнитель"
 
 #: templates/users/login.html:5 templates/users/login.html:8
 msgid "Login"
@@ -475,6 +467,10 @@ msgstr ""
 msgid "Дата регистрации"
 msgstr ""
 
+#: templates/users/user_list.html:20
+msgid "Действия"
+msgstr ""
+
 #: templates/users/user_list.html:41
 msgid "Пользователи не найдены."
 msgstr ""
@@ -523,12 +519,6 @@ msgstr ""
 
 #~ msgid "Edit Task"
 #~ msgstr "Редактировать задачу"
-
-#~ msgid "Create Task"
-#~ msgstr "Создать задачу"
-
-#~ msgid "Tasks"
-#~ msgstr "Задачи"
 
 #~ msgid "Create New Task"
 #~ msgstr "Создать новую задачу"
