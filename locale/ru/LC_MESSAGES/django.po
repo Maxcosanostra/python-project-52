@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-27 16:16+0500\n"
+"POT-Creation-Date: 2025-04-27 16:26+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -211,8 +211,7 @@ msgstr ""
 msgid "Вход"
 msgstr "Вход"
 
-#: templates/base.html:43 templates/users/user_form.html:6
-#: templates/users/user_form.html:13
+#: templates/base.html:43
 msgid "Регистрация"
 msgstr ""
 
@@ -400,8 +399,7 @@ msgid "Log in"
 msgstr "Войти"
 
 #: templates/users/password_change_form.html:5
-#: templates/users/password_change_form.html:9 templates/users/user_form.html:5
-#: templates/users/user_form.html:12
+#: templates/users/password_change_form.html:9
 msgid "Изменение пользователя"
 msgstr ""
 
@@ -430,21 +428,22 @@ msgstr "Вы уверены, что хотите удалить свой акк�
 msgid "Да, удалить"
 msgstr ""
 
-#: templates/users/user_form.html:21
-msgid "Изменить"
-msgstr ""
+#: templates/users/user_form.html:5 templates/users/user_form.html:12
+msgid "Edit User"
+msgstr "Изменение пользователя"
 
-#: templates/users/user_form.html:22
-msgid "Зарегистрировать"
-msgstr ""
+#: templates/users/user_form.html:6 templates/users/user_form.html:13
+#: templates/users/user_form.html:22 templates/users/user_list.html:11
+msgid "Register"
+msgstr "Регистрация"
+
+#: templates/users/user_form.html:21
+msgid "Update"
+msgstr "Изменить"
 
 #: templates/users/user_list.html:5 templates/users/user_list.html:9
 msgid "Users"
 msgstr "Пользователи"
-
-#: templates/users/user_list.html:11
-msgid "Register"
-msgstr "Регистрация"
 
 #: templates/users/user_list.html:17
 msgid "Username"

@@ -2,15 +2,15 @@
 {% load django_bootstrap5 i18n %}
 
 {% block title %}
-    {% if object %}{% trans "Изменение пользователя" %}
-    {% else %}{% trans "Регистрация" %}
+    {% if object %}{% trans "Edit User" %}
+    {% else %}{% trans "Register" %}
     {% endif %}
 {% endblock %}
 
 {% block content %}
 <h1 class="mb-4">
-    {% if object %}{% trans "Изменение пользователя" %}
-    {% else %}{% trans "Регистрация" %}
+    {% if object %}{% trans "Edit User" %}
+    {% else %}{% trans "Register" %}
     {% endif %}
 </h1>
 
@@ -18,8 +18,8 @@
     {% csrf_token %}
     {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">
-        {% if object %}{% trans "Изменить" %}
-        {% else %}{% trans "Зарегистрировать" %}
+        {% if object %}{% trans "Update" %}
+        {% else %}{% trans "Register" %}
         {% endif %}
     </button>
 </form>
