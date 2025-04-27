@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-27 05:55+0500\n"
+"POT-Creation-Date: 2025-04-27 06:06+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -86,6 +86,23 @@ msgstr "Невозможно удалить статус, потому что о
 msgid "Status successfully deleted"
 msgstr "Статус успешно удален"
 
+#: task_manager/tasks/filters.py:13
+msgid "Only my tasks"
+msgstr "Только свои задачи"
+
+#: task_manager/tasks/filters.py:17 templates/tasks/task_list.html:28
+msgid "Executor"
+msgstr "Исполнитель"
+
+#: task_manager/tasks/filters.py:32 task_manager/tasks/models.py:23
+#: templates/tasks/task_filter.html:17 templates/tasks/task_list.html:26
+msgid "Status"
+msgstr "Статус"
+
+#: task_manager/tasks/filters.py:33
+msgid "Label"
+msgstr "Метка"
+
 #: task_manager/tasks/forms.py:20
 msgid "Описание"
 msgstr ""
@@ -101,11 +118,6 @@ msgstr "Описание:"
 #: task_manager/tasks/models.py:15
 msgid "Assigned to"
 msgstr "Исполнитель:"
-
-#: task_manager/tasks/models.py:23 templates/tasks/task_filter.html:17
-#: templates/tasks/task_list.html:26
-msgid "Status"
-msgstr "Статус"
 
 #: task_manager/tasks/models.py:29 templates/tasks/task_filter.html:18
 #: templates/tasks/task_list.html:27
@@ -384,10 +396,6 @@ msgstr "Задачи"
 #: templates/tasks/task_list.html:17
 msgid "Show"
 msgstr "Показать"
-
-#: templates/tasks/task_list.html:28
-msgid "Executor"
-msgstr "Исполнитель"
 
 #: templates/users/login.html:5 templates/users/login.html:8
 msgid "Login"
