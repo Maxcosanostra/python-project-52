@@ -107,7 +107,7 @@ msgstr "Метка"
 
 #: task_manager/tasks/forms.py:19 task_manager/tasks/models.py:10
 msgid "Description"
-msgstr "Описание:"
+msgstr "Описание"
 
 #: task_manager/tasks/forms.py:22 task_manager/tasks/models.py:35
 #: templates/labels/label_list.html:5 templates/labels/label_list.html:9
