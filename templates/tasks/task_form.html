@@ -1,19 +1,21 @@
 {% extends "base.html" %}
 {% load django_bootstrap5 %}
 {% load i18n %}
+
 {% block title %}
     {% if object %}
-        {% trans "Изменить задачу" %}
+        {% trans "Edit task" %}
     {% else %}
-        {% trans "Создать задачу" %}
+        {% trans "Create task" %}
     {% endif %}
 {% endblock %}
+
 {% block content %}
     <h1>
         {% if object %}
-            {% trans "Изменить задачу" %}
+            {% trans "Edit task" %}
         {% else %}
-            {% trans "Создать задачу" %}
+            {% trans "Create task" %}
         {% endif %}
     </h1>
     <form method="post">
@@ -21,9 +23,9 @@
         {% bootstrap_form form %}
         <button type="submit" class="btn btn-primary">
             {% if object %}
-                {% trans "Изменить" %}
+                {% trans "Edit" %}
             {% else %}
-                {% trans "Создать" %}
+                {% trans "Create" %}
             {% endif %}
         </button>
     </form>
