@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-27 20:13+0500\n"
+"POT-Creation-Date: 2025-04-27 20:22+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -19,7 +19,6 @@ msgstr ""
 "(n%100>=11 && n%100<=14) ? 2 : 3);\n"
 
 #: task_manager/labels/apps.py:8 task_manager/labels/models.py:13
-#: templates/base.html:53
 msgid "Метки"
 msgstr ""
 
@@ -62,7 +61,6 @@ msgid "Label successfully deleted"
 msgstr "Метка успешно удалена"
 
 #: task_manager/statuses/apps.py:8 task_manager/statuses/models.py:13
-#: templates/base.html:50
 msgid "Статусы"
 msgstr ""
 
@@ -110,7 +108,8 @@ msgid "Description"
 msgstr "Описание"
 
 #: task_manager/tasks/forms.py:22 task_manager/tasks/models.py:35
-#: templates/labels/label_list.html:5 templates/labels/label_list.html:9
+#: templates/base.html:53 templates/labels/label_list.html:5
+#: templates/labels/label_list.html:9
 msgid "Labels"
 msgstr "Метки"
 
@@ -195,41 +194,59 @@ msgstr "Вы залогинены"
 msgid "You have been logged out."
 msgstr "Вы разлогинены"
 
-#: templates/base.html:22
-msgid "Менеджер задач"
-msgstr ""
+#: templates/base.html:9
+msgid "A simple Django task manager with Rollbar integration"
+msgstr "Простой таск‑менеджер на Django с интеграцией Rollbar"
+
+#: templates/base.html:10
+msgid "Django, task manager, Rollbar, CRUD"
+msgstr "Django, таск‑менеджер, Rollbar, CRUD"
+
+#: templates/base.html:12 templates/base.html:22 templates/index.html:4
+msgid "Task Manager"
+msgstr "Менеджер задач"
 
 #: templates/base.html:29
-msgid "Переключить навигацию"
+msgid "Toggle navigation"
 msgstr "Переключить навигацию"
 
 #: templates/base.html:37 templates/base.html:47
-msgid "Пользователи"
-msgstr ""
+#: templates/users/user_list.html:5 templates/users/user_list.html:9
+msgid "Users"
+msgstr "Пользователи"
 
-#: templates/base.html:40
-msgid "Вход"
+#: templates/base.html:40 templates/users/login.html:5
+#: templates/users/login.html:8
+msgid "Login"
 msgstr "Вход"
 
 #: templates/base.html:43
-msgid "Регистрация"
-msgstr ""
+#| msgctxt "noun"
+#| msgid "Register"
+msgid "Register"
+msgstr "Регистрация"
 
-#: templates/base.html:56
-msgid "Задачи"
-msgstr ""
+#: templates/base.html:50 templates/statuses/status_list.html:5
+#: templates/statuses/status_list.html:9
+msgid "Statuses"
+msgstr "Статусы"
+
+#: templates/base.html:56 templates/tasks/task_list.html:5
+#: templates/tasks/task_list.html:8
+msgid "Tasks"
+msgstr "Задачи"
 
 #: templates/base.html:61
-msgid "Выход"
-msgstr ""
+msgid "Logout"
+msgstr "Выход"
 
-#: templates/base.html:99
-msgid "Закрыть"
+#: templates/base.html:71
+msgid "Toggle theme"
+msgstr "Переключить тему"
+
+#: templates/base.html:100
+msgid "Close"
 msgstr "Закрыть"
-
-#: templates/index.html:4
-msgid "Task Manager"
-msgstr "Менеджер задач"
 
 #: templates/index.html:9
 msgid "Hi from Hexlet!"
@@ -325,10 +342,6 @@ msgstr "Изменить статус"
 msgid "Create status"
 msgstr "Создать статус"
 
-#: templates/statuses/status_list.html:5 templates/statuses/status_list.html:9
-msgid "Statuses"
-msgstr "Статусы"
-
 #: templates/statuses/status_list.html:37
 msgid "No statuses found."
 msgstr "Статусы не найдены."
@@ -386,17 +399,9 @@ msgstr "Изменить задачу"
 msgid "Create task"
 msgstr "Создать задачу"
 
-#: templates/tasks/task_list.html:5 templates/tasks/task_list.html:8
-msgid "Tasks"
-msgstr "Задачи"
-
 #: templates/tasks/task_list.html:17
 msgid "Show"
 msgstr "Показать"
-
-#: templates/users/login.html:5 templates/users/login.html:8
-msgid "Login"
-msgstr "Вход"
 
 #: templates/users/login.html:12
 msgid "Log in"
@@ -451,10 +456,6 @@ msgctxt "verb"
 msgid "Register"
 msgstr "Зарегистрировать"
 
-#: templates/users/user_list.html:5 templates/users/user_list.html:9
-msgid "Users"
-msgstr "Пользователи"
-
 #: templates/users/user_list.html:17
 msgid "Username"
 msgstr "Имя пользователя"
@@ -470,6 +471,15 @@ msgstr "Дата регистрации"
 #: templates/users/user_list.html:45
 msgid "No users found."
 msgstr "Пользователи не найдены."
+
+#~ msgid "Переключить навигацию"
+#~ msgstr "Переключить навигацию"
+
+#~ msgid "Вход"
+#~ msgstr "Вход"
+
+#~ msgid "Закрыть"
+#~ msgstr "Закрыть"
 
 #~ msgid "Edit User"
 #~ msgstr "Изменение пользователя"

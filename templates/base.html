@@ -1,15 +1,15 @@
 {% load django_bootstrap5 %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="ru" data-bs-theme="light">
+<html lang="en" data-bs-theme="light">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description"
-              content="Простой таск‑менеджер на Django с интеграцией Rollbar">
-        <meta name="keywords" content="Django, таск‑менеджер, Rollbar, CRUD">
+              content="{% trans 'A simple Django task manager with Rollbar integration' %}">
+        <meta name="keywords" content="{% trans 'Django, task manager, Rollbar, CRUD' %}">
         <title>
-            {% block title %}Менеджер задач{% endblock %}
+            {% block title %}{% trans 'Task Manager' %}{% endblock %}
         </title>
         {% bootstrap_css %}
         {% bootstrap_javascript %}
@@ -17,16 +17,16 @@
 
     <body class="d-flex flex-column min-vh-100">
         <!-- Навигация -->
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">  {# ➋ новый класс #}
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
-                <a class="navbar-brand" href="{% url 'index' %}">{% trans 'Менеджер задач' %}</a>
+                <a class="navbar-brand" href="{% url 'index' %}">{% trans 'Task Manager' %}</a>
                 <button class="navbar-toggler"
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#navbarNav"
                         aria-controls="navbarNav"
                         aria-expanded="false"
-                        aria-label="{% trans 'Переключить навигацию' %}">
+                        aria-label="{% trans 'Toggle navigation' %}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -34,42 +34,44 @@
                     <ul class="navbar-nav">
                         {% if not request.user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
+                                <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Users' %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'login' %}">{% trans 'Вход' %}</a>
+                                <a class="nav-link" href="{% url 'login' %}">{% trans 'Login' %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'user_create' %}">{% trans 'Регистрация' %}</a>
+                                <a class="nav-link" href="{% url 'user_create' %}">{% trans 'Register' %}</a>
                             </li>
                         {% else %}
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Пользователи' %}</a>
+                                <a class="nav-link" href="{% url 'user_list' %}">{% trans 'Users' %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'status_list' %}">{% trans 'Статусы' %}</a>
+                                <a class="nav-link" href="{% url 'status_list' %}">{% trans 'Statuses' %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'label_list' %}">{% trans 'Метки' %}</a>
+                                <a class="nav-link" href="{% url 'label_list' %}">{% trans 'Labels' %}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{% url 'task_list' %}">{% trans 'Задачи' %}</a>
+                                <a class="nav-link" href="{% url 'task_list' %}">{% trans 'Tasks' %}</a>
                             </li>
                             <li class="nav-item">
                                 <form method="post" action="{% url 'logout' %}" class="d-inline">
                                     {% csrf_token %}
-                                    <button class="btn btn-link nav-link" type="submit">{% trans 'Выход' %}</button>
+                                    <button class="btn btn-link nav-link" type="submit">{% trans 'Logout' %}</button>
                                 </form>
                             </li>
                         {% endif %}
                     </ul>
 
+                    <!-- переключатель темы -->
                     <button id="themeToggle"
                             class="btn btn-outline-secondary ms-auto"
                             type="button"
-                            aria-label="Toggle theme">
+                            aria-label="{% trans 'Toggle theme' %}">
                         <span id="themeIcon">☾</span>
                     </button>
+
                     <!-- переключатель языка -->
                     <form action="{% url 'set_language' %}" method="post" class="d-flex align-items-center ms-2">
                         {% csrf_token %}
@@ -81,7 +83,6 @@
                             EN
                         </button>
                     </form>
-
                 </div>
             </div>
         </nav>
@@ -96,7 +97,7 @@
                         <button type="button"
                                 class="btn-close"
                                 data-bs-dismiss="alert"
-                                aria-label="{% trans 'Закрыть' %}"></button>
+                                aria-label="{% trans 'Close' %}"></button>
                     </div>
                 {% endfor %}
             </div>
@@ -122,7 +123,6 @@
                 const btn  = document.getElementById('themeToggle');
                 const ico  = document.getElementById('themeIcon');
 
-                // применяем сохранённую тему (если есть)
                 const saved = localStorage.getItem('bs-theme');
                 if (saved) {
                     html.setAttribute('data-bs-theme', saved);
