@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-27 04:41+0500\n"
+"POT-Creation-Date: 2025-04-27 05:00+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -30,13 +30,13 @@ msgstr ""
 
 #: task_manager/labels/models.py:6 task_manager/statuses/models.py:6
 #: task_manager/tasks/models.py:9 templates/labels/label_form.html:23
-#: templates/labels/label_list.html:15 templates/statuses/status_list.html:15
+#: templates/labels/label_list.html:15 templates/statuses/status_list.html:17
 #: templates/tasks/task_filter.html:16
 msgid "Name"
 msgstr "Имя"
 
 #: task_manager/labels/models.py:8 task_manager/statuses/models.py:8
-#: templates/labels/label_list.html:16 templates/statuses/status_list.html:16
+#: templates/labels/label_list.html:16 templates/statuses/status_list.html:18
 msgid "Date Created"
 msgstr "Дата создания"
 
@@ -61,8 +61,7 @@ msgid "Label successfully deleted"
 msgstr "Метка успешно удалена"
 
 #: task_manager/statuses/apps.py:8 task_manager/statuses/models.py:13
-#: templates/base.html:50 templates/statuses/status_list.html:5
-#: templates/statuses/status_list.html:9
+#: templates/base.html:50
 msgid "Статусы"
 msgstr ""
 
@@ -263,7 +262,7 @@ msgid "Create label"
 msgstr "Создать метку"
 
 #: templates/labels/label_form.html:37 templates/labels/label_list.html:27
-#: templates/tasks/task_filter.html:32
+#: templates/statuses/status_list.html:30 templates/tasks/task_filter.html:32
 msgid "Edit"
 msgstr "Изменить"
 
@@ -271,17 +270,18 @@ msgstr "Изменить"
 msgid "Create"
 msgstr "Создать"
 
-#: templates/labels/label_list.html:14 templates/statuses/status_list.html:14
+#: templates/labels/label_list.html:14 templates/statuses/status_list.html:16
 #: templates/tasks/task_list.html:24 templates/users/user_list.html:16
 msgid "ID"
 msgstr ""
 
-#: templates/labels/label_list.html:17 templates/statuses/status_list.html:17
+#: templates/labels/label_list.html:17 templates/statuses/status_list.html:19
 #: templates/tasks/task_filter.html:19
 msgid "Actions"
 msgstr "Действия"
 
-#: templates/labels/label_list.html:28 templates/tasks/task_filter.html:34
+#: templates/labels/label_list.html:28 templates/statuses/status_list.html:32
+#: templates/tasks/task_filter.html:34
 msgid "Delete"
 msgstr "Удалить"
 
@@ -316,12 +316,10 @@ msgid "Изменить статус"
 msgstr ""
 
 #: templates/statuses/status_form.html:9 templates/statuses/status_form.html:18
-#: templates/statuses/status_list.html:10
 msgid "Создать статус"
 msgstr ""
 
-#: templates/statuses/status_form.html:38
-#: templates/statuses/status_list.html:28 templates/tasks/task_form.html:24
+#: templates/statuses/status_form.html:38 templates/tasks/task_form.html:24
 #: templates/tasks/task_list.html:49 templates/users/user_form.html:21
 #: templates/users/user_list.html:33
 msgid "Изменить"
@@ -331,12 +329,15 @@ msgstr ""
 msgid "Создать"
 msgstr ""
 
-#: templates/statuses/status_list.html:30 templates/tasks/task_detail.html:40
-#: templates/tasks/task_list.html:54 templates/users/user_list.html:36
-msgid "Удалить"
-msgstr ""
+#: templates/statuses/status_list.html:5 templates/statuses/status_list.html:9
+msgid "Statuses"
+msgstr "Статусы"
 
-#: templates/statuses/status_list.html:35
+#: templates/statuses/status_list.html:11
+msgid "Create status"
+msgstr "Создать статус"
+
+#: templates/statuses/status_list.html:37
 msgid "No statuses found."
 msgstr "Статусы не найдены."
 
@@ -370,6 +371,11 @@ msgstr ""
 
 #: templates/tasks/task_detail.html:37
 msgid "Редактировать"
+msgstr ""
+
+#: templates/tasks/task_detail.html:40 templates/tasks/task_list.html:54
+#: templates/users/user_list.html:36
+msgid "Удалить"
 msgstr ""
 
 #: templates/tasks/task_detail.html:43
@@ -502,12 +508,6 @@ msgstr ""
 
 #~ msgid "Edit Status"
 #~ msgstr "Редактировать статус"
-
-#~ msgid "Create Status"
-#~ msgstr "Создать статус"
-
-#~ msgid "Statuses"
-#~ msgstr "Статусы"
 
 #~ msgid "Create New Status"
 #~ msgstr "Создать новый статус"
