@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-27 17:27+0500\n"
+"POT-Creation-Date: 2025-04-27 17:45+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -429,26 +429,23 @@ msgid "Да, удалить"
 msgstr ""
 
 #: templates/users/user_form.html:6 templates/users/user_form.html:15
-#| msgctxt "verb"
-#| msgid "Update"
 msgid "Update user"
 msgstr "Изменение пользователя"
 
-#: templates/users/user_form.html:8 templates/users/user_list.html:11
+#: templates/users/user_form.html:8 templates/users/user_form.html:17
+#: templates/users/user_list.html:11
 msgctxt "noun"
 msgid "Register"
 msgstr "Регистрация"
 
-#: templates/users/user_form.html:17 templates/users/user_form.html:28
+#: templates/users/user_form.html:26 templates/users/user_list.html:34
+msgid "Update"
+msgstr "Изменить"
+
+#: templates/users/user_form.html:28
 msgctxt "verb"
 msgid "Register"
 msgstr "Зарегистрировать"
-
-#: templates/users/user_form.html:26 templates/users/user_list.html:34
-#| msgctxt "verb"
-#| msgid "Update"
-msgid "Update"
-msgstr "Изменить"
 
 #: templates/users/user_list.html:5 templates/users/user_list.html:9
 msgid "Users"
