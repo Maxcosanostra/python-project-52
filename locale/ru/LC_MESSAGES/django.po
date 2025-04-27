@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-27 17:45+0500\n"
+"POT-Creation-Date: 2025-04-27 18:47+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -143,29 +143,29 @@ msgstr "Задачу может удалить только ее автор"
 msgid "Task successfully deleted"
 msgstr "Задача успешно удалена"
 
-#: task_manager/users/forms.py:13 task_manager/users/forms.py:36
+#: task_manager/users/forms.py:10 task_manager/users/forms.py:29
 msgid "First name"
 msgstr "Имя"
 
-#: task_manager/users/forms.py:16 task_manager/users/forms.py:39
+#: task_manager/users/forms.py:13 task_manager/users/forms.py:32
 msgid "Last name"
 msgstr "Фамилия"
 
-#: task_manager/users/forms.py:44
-msgid "Пароль"
-msgstr ""
+#: task_manager/users/forms.py:36
+msgid "Password"
+msgstr "Пароль"
 
-#: task_manager/users/forms.py:50
-msgid "Подтверждение пароля"
-msgstr ""
+#: task_manager/users/forms.py:42
+msgid "Confirm password"
+msgstr "Подтверждение пароля"
 
-#: task_manager/users/forms.py:53
-msgid "Для подтверждения введите, пожалуйста, пароль ещё раз."
-msgstr ""
+#: task_manager/users/forms.py:45
+msgid "Please confirm your password."
+msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
 
-#: task_manager/users/forms.py:73
-msgid "Пароли не совпадают."
-msgstr ""
+#: task_manager/users/forms.py:64
+msgid "Passwords do not match."
+msgstr "Пароли не совпадают."
 
 #: task_manager/users/views.py:38
 msgid "Registration successful. Please log in."
@@ -469,6 +469,9 @@ msgstr "Пользователи не найдены."
 
 #~ msgid "Edit User"
 #~ msgstr "Изменение пользователя"
+
+#~ msgid "Personal Information"
+#~ msgstr "Личные данные"
 
 #~ msgid "Profile updated successfully."
 #~ msgstr "Аккаунт успешно обновлен"

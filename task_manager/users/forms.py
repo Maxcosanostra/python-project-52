@@ -5,9 +5,6 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext_lazy as _
 
 
-# ------------------------------------------------------------------
-#  Регистрация
-# ------------------------------------------------------------------
 class CustomUserCreationForm(UserCreationForm):
     first_name = forms.CharField(
         label=_("First name"), max_length=30, required=False
@@ -27,11 +24,7 @@ class CustomUserCreationForm(UserCreationForm):
         )
 
 
-# ------------------------------------------------------------------
-#  Профиль + смена пароля
-# ------------------------------------------------------------------
 class CustomUserChangeForm(forms.ModelForm):
-    # личные данные
     first_name = forms.CharField(
         label=_("First name"), max_length=30, required=False
     )
@@ -39,18 +32,17 @@ class CustomUserChangeForm(forms.ModelForm):
         label=_("Last name"), max_length=150, required=False
     )
 
-    # смена пароля
     password1 = forms.CharField(
-        label=_("Пароль"),
+        label=_("Password"),
         widget=forms.PasswordInput,
         required=False,
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
-        label=_("Подтверждение пароля"),
+        label=_("Confirm password"),
         widget=forms.PasswordInput,
         required=False,
-        help_text=_("Для подтверждения введите, пожалуйста, пароль ещё раз."),
+        help_text=_("Please confirm your password."),
     )
 
     class Meta:
@@ -63,14 +55,13 @@ class CustomUserChangeForm(forms.ModelForm):
             "password2",
         )
 
-    # --- валидация двух полей пароля ------------------------------------------
     def clean(self):
         cleaned = super().clean()
         pwd1, pwd2 = cleaned.get("password1"), cleaned.get("password2")
 
-        if pwd1 or pwd2:  # пароль меняем только если что-то ввели
+        if pwd1 or pwd2:
             if pwd1 != pwd2:
-                raise forms.ValidationError(_("Пароли не совпадают."))
+                raise forms.ValidationError(_("Passwords do not match."))
             password_validation.validate_password(pwd1, self.instance)
 
         return cleaned
