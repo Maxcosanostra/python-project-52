@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load i18n %}
+{% load django_bootstrap5 i18n %}
 
 {% block title %}
     {% trans "Users" %}
@@ -8,7 +8,7 @@
 {% block content %}
     <h1>{% trans "Users" %}</h1>
     <a href="{% url 'user_create' %}" class="btn btn-primary mb-3">
-        {% trans "Register" %}
+        {% trans "Register" context "noun" %}
     </a>
     <table class="table table-striped">
         <thead>
@@ -30,10 +30,14 @@
                     <td>
                         {% if request.user.pk == user.pk %}
                             <a href="{% url 'user_update' user.pk %}"
-                               class="btn btn-sm btn-secondary">{% trans "Edit" %}</a>
+                               class="btn btn-sm btn-secondary">
+                                {% trans "Update" %}
+                            </a>
                         {% endif %}
                         <a href="{% url 'user_delete' user.pk %}"
-                           class="btn btn-sm btn-danger">{% trans "Delete" %}</a>
+                           class="btn btn-sm btn-danger">
+                            {% trans "Delete" %}
+                        </a>
                     </td>
                 </tr>
             {% empty %}
