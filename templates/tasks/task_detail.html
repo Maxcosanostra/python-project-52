@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "Просмотр задачи" %}{% endblock %}
+{% block title %}{% trans "View Task" %}{% endblock %}
 
 {% block content %}
-    <h1>{% trans "Просмотр задачи" %}</h1>
+    <h1>{% trans "View Task" %}</h1>
 
     <div class="bg-body-tertiary border rounded-top">
         <div class="bg-secondary text-white p-3 rounded-top">
@@ -13,19 +13,19 @@
         <div class="p-3">
             <p>{{ task.description }}</p>
             <hr>
-            <p><strong>{% trans "Статус:" %}</strong> {{ task.status.name }}</p>
-            <p><strong>{% trans "Автор:" %}</strong>
+            <p><strong>{% trans "Status:" %}</strong> {{ task.status.name }}</p>
+            <p><strong>{% trans "Author:" %}</strong>
                {{ task.author.get_full_name|default:task.author.username }}</p>
 
             {% if task.assigned_to %}
-                <p><strong>{% trans "Исполнитель:" %}</strong>
+                <p><strong>{% trans "Executor:" %}</strong>
                    {{ task.assigned_to.get_full_name|default:task.assigned_to.username }}</p>
             {% endif %}
 
-            <p><strong>{% trans "Дата создания:" %}</strong> {{ task.created_at }}</p>
+            <p><strong>{% trans "Created at:" %}</strong> {{ task.created_at }}</p>
 
             {% if task.labels.exists %}
-                <p><strong>{% trans "Метки:" %}</strong>
+                <p><strong>{% trans "Labels:" %}</strong>
                     {% for lbl in task.labels.all %}
                         <span class="badge bg-secondary">{{ lbl.name }}</span>
                     {% endfor %}
@@ -34,13 +34,13 @@
 
             <div class="mt-3">
                 <a href="{% url 'task_update' task.pk %}" class="btn btn-secondary">
-                    {% trans "Редактировать" %}
+                    {% trans "Edit" %}
                 </a>
                 <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger">
-                    {% trans "Удалить" %}
+                    {% trans "Delete" %}
                 </a>
                 <a href="{% url 'task_list' %}" class="btn btn-link">
-                    {% trans "Назад к списку задач" %}
+                    {% trans "Back to task list" %}
                 </a>
             </div>
         </div>
