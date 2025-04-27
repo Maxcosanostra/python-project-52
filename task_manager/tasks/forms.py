@@ -12,14 +12,13 @@ class TaskForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # читаемые подписи + id для select2 (если нужно)
         self.fields["assigned_to"].label_from_instance = (
             lambda u: u.get_full_name() or u.username
         )
-        self.fields["name"].label = _("Имя")
-        self.fields["description"].label = _("Описание")
-        self.fields["assigned_to"].label = _("Исполнитель")
-        self.fields["status"].label = _("Статус")
-        self.fields["labels"].label = _("Метки")
+        self.fields["name"].label = _("Name")
+        self.fields["description"].label = _("Description")
+        self.fields["assigned_to"].label = _("Executor")
+        self.fields["status"].label = _("Status")
+        self.fields["labels"].label = _("Labels")
 
         self.fields["assigned_to"].widget.attrs["id"] = "id_executor"
