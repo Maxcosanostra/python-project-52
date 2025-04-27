@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-27 05:49+0500\n"
+"POT-Creation-Date: 2025-04-27 05:55+0500\n"
 "PO-Revision-Date: 2025-04-16 05:27+0500\n"
 "Last-Translator: YOUR NAME <your.email@example.com>\n"
 "Language-Team: Russian\n"
@@ -239,6 +239,8 @@ msgstr ""
 #: templates/labels/label_confirm_delete.html:9
 #: templates/statuses/status_confirm_delete.html:5
 #: templates/statuses/status_confirm_delete.html:9
+#: templates/tasks/task_confirm_delete.html:5
+#: templates/tasks/task_confirm_delete.html:9
 msgid "Confirm deletion"
 msgstr "Подтвердите удаление"
 
@@ -248,11 +250,13 @@ msgstr "Вы уверены, что хотите удалить эту метк�
 
 #: templates/labels/label_confirm_delete.html:14
 #: templates/statuses/status_confirm_delete.html:13
+#: templates/tasks/task_confirm_delete.html:13
 msgid "Yes, delete"
 msgstr "Да, удалить"
 
 #: templates/labels/label_confirm_delete.html:16
 #: templates/statuses/status_confirm_delete.html:14
+#: templates/tasks/task_confirm_delete.html:14
 #: templates/users/user_confirm_delete.html:14
 msgid "Cancel"
 msgstr "Отмена"
@@ -320,23 +324,9 @@ msgstr "Статусы"
 msgid "No statuses found."
 msgstr "Статусы не найдены."
 
-#: templates/tasks/task_confirm_delete.html:4
-#: templates/tasks/task_confirm_delete.html:7
-msgid "Подтвердить удаление"
-msgstr ""
-
-#: templates/tasks/task_confirm_delete.html:8
-msgid "Вы уверены, что хотите удалить эту задачу?"
-msgstr ""
-
-#: templates/tasks/task_confirm_delete.html:11
-#: templates/users/user_confirm_delete.html:13
-msgid "Да, удалить"
-msgstr ""
-
-#: templates/tasks/task_confirm_delete.html:12
-msgid "Отмена"
-msgstr ""
+#: templates/tasks/task_confirm_delete.html:10
+msgid "Are you sure you want to delete this task?"
+msgstr "Вы уверены, что хотите удалить эту задачу?"
 
 #: templates/tasks/task_detail.html:4 templates/tasks/task_detail.html:7
 msgid "View Task"
@@ -433,6 +423,10 @@ msgstr "Подтвердите удаление"
 #: templates/users/user_confirm_delete.html:10
 msgid "Are you sure you want to delete your account?"
 msgstr "Вы уверены, что хотите удалить свой аккаунт?"
+
+#: templates/users/user_confirm_delete.html:13
+msgid "Да, удалить"
+msgstr ""
 
 #: templates/users/user_form.html:21 templates/users/user_list.html:33
 msgid "Изменить"
